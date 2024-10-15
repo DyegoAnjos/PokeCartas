@@ -7,18 +7,21 @@
 
     font-family: "Afacad Flux", sans-serif;
 }
+
 main{
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+    display: grid;
+    grid-template-columns:  1fr; 
+    grid-template-rows:  1fr 1fr 1fr ;
+   background-image: url(../imgs/background.png);
+   
 }
 
 .card{
     width: 230px;
-    height: 340px;
-    background-color: brown;
+    height: 360px;
+    background-color: #e7603e;
     border: 10px #b7b6b5 solid;
     border-radius: 1rem;
     display: flex;
@@ -36,14 +39,14 @@ main{
 .card_id_pokemon{
     border-radius: 0 0 1.5rem 0;
     width: 3rem;
-    background-color: burlywood;
+    background-color: #b7b6b5;
 }
 
 .box_hp_pokemon{
     border-radius: 0 0 0 1.5rem;
     width: 3.5rem;
     text-align: end;
-    background-color: burlywood;
+    background-color: #b7b6b5;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -62,14 +65,15 @@ main{
 
 
 .card_image_pokemon{
-    width: 120px;
-    height: 120px;
+    width: 60%;
+    margin-top: -1rem;
 }
 
 .card_name_pokemon{
     width: 100%;
     text-align: center;
-    background-color: cadetblue;
+    background-color: #b7b6b5;
+    margin-bottom: .5rem;
 }
 
 
@@ -83,10 +87,22 @@ main{
 }
 
 .type1_pokemon, .type2_pokemon{
-    border: 1px black solid;
     width: 40%;
     text-align: center;
     border-radius: .5rem;
+    
+
+
+}
+
+.type1_pokemon{
+    background-color: #e7603e;
+    box-shadow: 0 0 5px 1px #000000;
+}
+
+.type2_pokemon{
+    background-color: #6f4769;
+    box-shadow: 0 0 5px 1px #000000;
 }
 
 .box_status_pokemon{
@@ -97,5 +113,11 @@ main{
     flex-direction: column;
     justify-content: space-between;
     padding: 0.5rem;
-    background-color: coral;
+}
+
+.card_box_personagem{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
 }
