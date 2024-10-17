@@ -8,6 +8,11 @@
     font-family: "Afacad Flux", sans-serif;
 }
 
+header{
+    position: absolute;
+    font-size: 4rem;
+}
+
 main{
     height: 100vh;
 
@@ -120,4 +125,30 @@ main{
     flex-direction: row;
     justify-content: center;
     gap: 5rem;
+}
+
+#lado1{
+    visibility: visible;
+}
+
+#lado2{
+    visibility: visible;
+}
+
+#meio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#button_finalizar{
+    width: 147px;
+    height: 37px;
+    border-radius: 5rem;
+}
+
+.selecionado{
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 0 5px 5px #000000;
 }
