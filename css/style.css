@@ -17,8 +17,9 @@ main{
     height: 100vh;
 
     display: grid;
-    grid-template-columns:  1fr; 
-    grid-template-rows:  1fr 1fr 1fr ;
+    grid-template-areas: "lado1 meio lado2";
+    justify-items: center;
+    align-items: stretch;
    background-image: url(../imgs/background.png);
    
 }
@@ -127,24 +128,79 @@ main{
     gap: 5rem;
 }
 
+#lado1 .card{
+    order: 1;
+}
+
+
+#lado2 .card{
+    order: 2;
+}
+
 #lado1{
+    height: 100vh;
     visibility: visible;
+    grid-area: lado1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
 }
 
 #lado2{
+    height: 100vh;
     visibility: visible;
+    grid-area: lado2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 #meio{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+    gap: 1rem;
+    grid-area: meio;
+}
+
+#button_box{
+    height: 10%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #button_finalizar{
-    width: 147px;
-    height: 37px;
+    width: 50%;
+    height: 100%;
     border-radius: 5rem;
+    font-size: 3rem;
+    font-weight: 500;
+
+}
+
+#card_ativos{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 50%;
+}
+
+#resultado{
+   width: 100%; 
+   height: 25%;
+   text-align: center;
+   font-size: 2rem;
+   font-weight: 500;
+   resize: none;
 }
 
 .selecionado{
@@ -152,3 +208,4 @@ main{
     height: 400px;
     box-shadow: 0 0 5px 5px #000000;
 }
+
