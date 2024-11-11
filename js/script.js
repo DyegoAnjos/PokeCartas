@@ -44,23 +44,18 @@ async function fetchPokemon(pokemon_id, cod_card) {
 }
 
 function inserirInfosPokemon(pokemon, cod_card){
-    for(let i=0; i <= typesColors.length-1;i++){
-        if(pokemon.types[0].type.name === typesColors[i].name){
-            card[cod_card].style.backgroundColor=typesColors[i].color
-        }
-        try{
-            if(pokemon.types[1].type.name === typesColors[i].name){
-                card[cod_card].style.borderColor=typesColors[i].color
-                box_hp_pokemon[cod_card].style.backgroundColor=typesColors[i].color
-                card_name_pokemon[cod_card].style.backgroundColor=typesColors[i].color
-                card_id_pokemon[cod_card].style.backgroundColor=typesColors[i].color
-            }
-        }
-        catch{
-
-        }
-        
+    card[cod_card].style.backgroundColor = typesColorsMap.get(pokemon.types[0].type.name)
+    try{
+        card[cod_card].style.borderColor = typesColorsMap.get(pokemon.types[1].type.name)
+        box_hp_pokemon[cod_card].style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name)
+        card_name_pokemon[cod_card].style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name)
+        card_id_pokemon[cod_card].style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name)
     }
+    catch{
+
+    }
+
+
 
     card_id_pokemon[cod_card].innerText= pokemon.order;
     card_hp_value[cod_card].innerText = normalizar(pokemon.stats[0].base_stat, 20, 150)
@@ -83,16 +78,12 @@ function inserirInfosPokemon(pokemon, cod_card){
         card_box_type_pokemon[cod_card].children[i].style.display="none"
     }
 
-    for(let i=0; i <= pokemon.types.length-1;i++){
-        card_box_type_pokemon[cod_card].children[i].style.display="block"
-        for(let j=0; j <= typesColors.length-1;j++){
-            
-            if(pokemon.types[i].type.name === typesColors[j].name){
-                card_box_type_pokemon[cod_card].children[i].style.backgroundColor=typesColors[j].color
-            }
 
-                card_box_type_pokemon[cod_card].children[i].innerText = pokemon.types[i].type.name.toUpperCase()
-        }
+
+    for(let i = 0; i <= pokemon.types.length-1;i++){
+        card_box_type_pokemon[cod_card].children[i].style.display = "block"
+        card_box_type_pokemon[cod_card].children[i].style.backgroundColor = typesColorsMap.get(pokemon.types[i].type.name)
+        card_box_type_pokemon[cod_card].children[i].innerText = pokemon.types[i].type.name.toUpperCase()
     }
 }
 
@@ -104,82 +95,16 @@ function PegarNumeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const typesColors = [
-    {
-        name: "poison",
-        color: "#9141cb"
-    },
-    {
-        name: "psychic",
-        color: "#ef4179"
-    },
-    {
-        name: "steel",
-        color: "#60a1b8"
-    },
-    {
-        name: "rock",
-        color: "#afa981"
-    },
-    {
-        name: "normal",
-        color: "#9fa19f"
-    },
-    {
-        name: "fairy",
-        color: "#ef70ef"
-    },
-    {
-        name: "ice",
-        color: "#3dcef3"
-    },
-    {
-        name: "dark",
-        color: "#624d4e"
-    },
-    {
-        name: "ground",
-        color: "#915121"
-    },
-    {
-        name: "dragon",
-        color: "#5060e0"
-    },
-    {
-        name: "water",
-        color: "#2980ef"
-    },
-    {
-        name: "ghost",
-        color: "#704170"
-    },
-    {
-        name: "electric",
-        color: "#fac000"
-    },
-    {
-        name: "flying",
-        color: "#81b9ef"
-    },
-    {
-        name: "bug",
-        color: "#91a119"
-    },
-    {
-        name: "fighting",
-        color: "#ff8000"
-    },
-    {
-        name: "grass",
-        color: "#3fa129"
-    },
-    {
-        name: "fire",
-        color: "#e62829"
-    },
-]
+
 
 function jogo(){
+    if(cards_meio.children.length == 2 && rodada > 4){
+        rodada = 2
+    }
+
+    else if(rodada > 4)
+        rodada = 1
+    
     switch(rodada){
         case 1:{
             sumario.value = "Jogadores\nEscolham seus Pokemon!\nDepois clique em finalizar"
@@ -220,8 +145,8 @@ function jogo(){
             cards_meio.children[1].style.display = "flex";
             cards_meio.children[0].style.display = "flex";
             sumario.value = `O resultado foi ` + batalha() + `\nClique em Finalizar para a próxima rodada`
-
         }break;
+        
     }
 }
 function batalha(){
@@ -243,26 +168,19 @@ function batalha(){
         morto[1] += estaMorto(Number(hp_card_dano.innerText), cards_meio.children[0])
 
         if (morto[0] && morto[1]) {
-            if (cards_meio.children.length > 0) {
                 cards_meio.children[0].remove();
-                cards_meio.children[0].remove();
-            }
+                cards_meio.children[0].remove();       
             return "empate, ambos tomaram dano. Ambos os pokemon foram derrotados";
         }
         
 
         else if(morto[0]){
-            if (cards_meio.children.length > 0) {
                 cards_meio.children[0].remove();
-            }
             return "empate, ambos tomaram dano. O pokemon do Jogador 1 foi derrotado"
         }
 
         else if(morto[1]){
-            
-            if (cards_meio.children.length > 1) {
                 cards_meio.children[1].remove();
-            }
             return "empate, ambos tomaram dano. O pokemon do Jogador 2 foi derrotado"
         }
 
@@ -331,16 +249,8 @@ card.forEach(cardElement => {
 });
 
 button_finalizar.addEventListener('click', () =>{
-   // if(rodada === 1 && cards_meio.children.length === 2){
-        if(rodada < 4){
-            rodada++
-        }
-        else{
-            rodada = 0;
-        }
-        jogo();
-    //}
-    
+    rodada++
+    jogo();    
 })
 
 
@@ -355,3 +265,24 @@ function Pedra_Papel_Tesoura(escola1, escolha2){
     else
         return 0
 }
+
+
+const typesColorsMap = new Map([
+    ["fire", "#F08030"],
+    ["water", "#6890F0"],
+    ["grass", "#78C850"],
+    ["electric", "#F8D030"],
+    ["ice", "#98D8D8"],
+    ["fighting", "#C03028"],
+    ["poison", "#A040A0"],
+    ["ground", "#E0C068"],
+    ["flying", "#A890F0"],
+    ["psychic", "#F85888"],
+    ["bug", "#A8B820"],
+    ["rock", "#B8A038"],
+    ["ghost", "#705898"],
+    ["dragon", "#7038F8"],
+    ["dark", "#705848"],
+    ["steel", "#B8B8D0"],
+    ["fairy", "#EE99AC"]
+]);
