@@ -4,19 +4,21 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/DyegoAnjos/Portfolio?style=for-the-badge)
 
 
-> Um dos projetos mais importantes, o meu portfólio com os meus melhores projetos.
+> Projeto de conclusão do ensino médio técnico TCC
 
 ### Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Ajuste para um Hud mais didático
-- [ ] Correção de Bugs
-- [ ] Itens
-
+- [ ] Cadastro de jogador
+- [ ] Layout inicial
+- [ ] Função de colecionar
+- [ ] Cadastro de Deck
+- [ ] Implementação de deck na batalha
 ## 💻 Habilidades no Projeto
 
 - HTML
 - CSS
 - JS
 - API
+- MySQL
