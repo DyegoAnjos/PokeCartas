@@ -120,7 +120,7 @@ function jogo(){
                 filho.addEventListener('click', () => {
                     valoresJogadores[0] = Number(filho.innerText.match(/\d+/g));
                     escolhaJogadores[0] = i;
-                    console.log(escolhaJogadores[0])
+                    console.log("Escolha Jogador:"+escolhaJogadores[0])
                     sumario.value = `Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${filho.innerText}`;
                });
             }
@@ -136,7 +136,7 @@ function jogo(){
                 filho.addEventListener('click', () => {
                     valoresJogadores[1] = Number(filho.innerText.match(/\d+/g));
                     escolhaJogadores[1] = i;
-                    console.log(escolhaJogadores[0])
+                    console.log("Escolha Jogador:"+escolhaJogadores[0])
                     sumario.value = `Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${filho.innerText}`;
                });
             }
@@ -151,6 +151,7 @@ function jogo(){
 }
 function batalha(){
     let vencedor=Pedra_Papel_Tesoura(escolhaJogadores[0], escolhaJogadores[1])
+    console.log("vencedor"+vencedor)
     if(vencedor === "empate"){
         let morto = [0,0] 
         let cardSelecionado = cards_meio.children[0].children[0].children[1]
@@ -158,55 +159,75 @@ function batalha(){
 
         hp_card_dano.innerText = Number(hp_card_dano.innerText) - valoresJogadores[1]
 
-        morto[0] += estaMorto(Number(hp_card_dano.innerText), cards_meio.children[0])
+        morto[0] = estaMorto(Number(hp_card_dano.innerText), cards_meio.children[0])
 
         cardSelecionado = cards_meio.children[1].children[0].children[1]
         hp_card_dano = cardSelecionado.querySelector('.value_hp_pokemon')
 
         hp_card_dano.innerText = Number(hp_card_dano.innerText) - valoresJogadores[0]
 
-        morto[1] += estaMorto(Number(hp_card_dano.innerText), cards_meio.children[0])
+        morto[1] = estaMorto(Number(hp_card_dano.innerText), cards_meio.children[0])
+
+        console.log("jogador1:"+morto[0])
+        console.log("jogador2:"+morto[1])
 
         if (morto[0] && morto[1]) {
                 cards_meio.children[0].remove();
                 cards_meio.children[0].remove();       
+                console.log("Empate")
             return "empate, ambos tomaram dano. Ambos os pokemon foram derrotados";
         }
         
 
         else if(morto[0]){
                 cards_meio.children[0].remove();
+                console.log("1 morreu")
             return "empate, ambos tomaram dano. O pokemon do Jogador 1 foi derrotado"
         }
 
         else if(morto[1]){
                 cards_meio.children[1].remove();
+                console.log("2 morreu")
             return "empate, ambos tomaram dano. O pokemon do Jogador 2 foi derrotado"
         }
 
         else{
+            console.log("0 morreu")
             return "empate, ambos tomaram dano. Nenhum pokemon foi derrotado"
         }
             
     }
 
-    if(escolhaJogadores[0] === vencedor){
+    else if(vencedor === 1){
         let cardSelecionado = cards_meio.children[1].children[0].children[1]
         let hp_card_dano = cardSelecionado.querySelector('.value_hp_pokemon')
-
+        
         hp_card_dano.innerText = Number(hp_card_dano.innerText) - valoresJogadores[0]
+        console.log("Vida pokemon 1:"+hp_card_dano.textContent)
+
+        if(estaMorto(Number(hp_card_dano.innerText), cardSelecionado)){
+            cards_meio.children[1].remove()
+            console.log("Jogador 2 morreu")
+        }
 
         return "O Jogador 1 ganhou!\nCausou dano no inimigo"
     }
 
-    else{
+    else if(vencedor === 2){
         let cardSelecionado = cards_meio.children[0].children[0].children[1]
         let hp_card_dano = cardSelecionado.querySelector('.value_hp_pokemon')
-
+        
         hp_card_dano.innerText = Number(hp_card_dano.innerText) - valoresJogadores[1]
-
+        console.log("Vida pokemon 2:"+hp_card_dano.textContent)
+        if(estaMorto(Number(hp_card_dano.innerText), cardSelecionado)){
+            cards_meio.children[0].remove()
+            console.log("Jogador 2 morreu")
+        }   
         return "O Jogador 1 ganhou!\nCausou dano no inimigo"
     }
+
+    
+    
 }
 
 function estaMorto(hpCard, card){
@@ -254,16 +275,15 @@ button_finalizar.addEventListener('click', () =>{
 })
 
 
-function Pedra_Papel_Tesoura(escola1, escolha2){
-    if(escola1 === escolha2)
+function Pedra_Papel_Tesoura(escolha1, escolha2){
+    if(escolha1 === escolha2)
         return "empate"
 
-    else if((escola1 === 0 && escolha2 === 1)||(escola1 === 1 && escolha2 === 0))
+    else if((escolha1 === 1 && escolha2 === 0) || (escolha1 === 2 && escolha2 === 1) ||(escolha1 === 0 && escolha2 === 2))
         return 1
-    else if((escola1 === 1 && escolha2 === 2)||(escola1 === 2 && escolha2 === 1))
+
+    else   
         return 2
-    else
-        return 0
 }
 
 
