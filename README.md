@@ -10,9 +10,9 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Cadastro de jogador
-- [ ] Layout inicial
-- [ ] Função de colecionar
+- [x] Cadastro de jogador
+- [x] Layout inicial
+- [x] Função de colecionar
 - [ ] Cadastro de Deck
 - [ ] Implementação de deck na batalha
 ## 💻 Habilidades no Projeto

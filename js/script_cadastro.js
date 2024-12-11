@@ -1,9 +1,9 @@
 const form_elemento = document.querySelector("form")
 
+const input_nome_elemento = document.querySelector("#usuario_nome")
 const input_email_elemento = document.querySelector("#usuario_email")
 const input_senha_elemento = document.querySelector("#usuario_senha")
 const botao_visuializar = document.querySelector(".button_visualizar i")
-
 
 
 botao_visuializar.addEventListener('click', () => {
@@ -20,16 +20,22 @@ botao_visuializar.addEventListener('click', () => {
 })
 
 form_elemento.addEventListener("submit", (e)=>{
+    
+    if(input_nome_elemento.value.trim() == ""){
+        e.preventDefault()
+        popup_alert("Campos inválidos")
+    }
+
     var regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    console.log(input_email_elemento.value)
     if(regex.test(input_email_elemento.value) === false){
         e.preventDefault()
-        popup_alert("E-mail ou senha inválidos")
+        popup_alert("Campos inválidos")
     }
     
     regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     if (regex.test(input_senha_elemento.value) === false){
         e.preventDefault()
-        popup_alert("E-mail ou senha inválidos")
+        popup_alert("Campos inválidos")
     }
+    
 })

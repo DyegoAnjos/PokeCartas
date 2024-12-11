@@ -24,7 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
     for(i=0;i < card.length;i++){
         fetchPokemon(PegarNumeroAleatorio(1, 1025), i);
     }
+
+    // fetchPokemon(10090, 3);
+
+    //  fetchPokemon(10036, 4);
+    //  fetchPokemon(10034, 5);
+    // fetchPokemon(10035, 6);
+    //  fetchPokemon(385, 7);
     jogo()
+
 });
 
 
@@ -57,7 +65,7 @@ function inserirInfosPokemon(pokemon, cod_card){
 
 
 
-    card_id_pokemon[cod_card].innerText= pokemon.order;
+    card_id_pokemon[cod_card].innerText= pokemon.id;
     card_hp_value[cod_card].innerText = normalizar(pokemon.stats[0].base_stat, 20, 150)
     card_image_pokemon[cod_card].setAttribute("src", pokemon.sprites.other['official-artwork'].front_default);
 
@@ -172,6 +180,7 @@ function batalha(){
         console.log("jogador2:"+morto[1])
 
         if (morto[0] && morto[1]) {
+            Capturar_Pokemon(cards_meio.children[1].children[0].children[0].innerText)
                 cards_meio.children[0].remove();
                 cards_meio.children[0].remove();       
                 console.log("Empate")
@@ -186,6 +195,7 @@ function batalha(){
         }
 
         else if(morto[1]){
+                Capturar_Pokemon(cards_meio.children[1].children[0].children[0].innerText)
                 cards_meio.children[1].remove();
                 console.log("2 morreu")
             return "empate, ambos tomaram dano. O pokemon do Jogador 2 foi derrotado"
@@ -206,6 +216,7 @@ function batalha(){
         console.log("Vida pokemon 1:"+hp_card_dano.textContent)
 
         if(estaMorto(Number(hp_card_dano.innerText), cardSelecionado)){
+            Capturar_Pokemon(cards_meio.children[1].children[0].children[0].innerText)
             cards_meio.children[1].remove()
             console.log("Jogador 2 morreu")
         }
@@ -221,9 +232,9 @@ function batalha(){
         console.log("Vida pokemon 2:"+hp_card_dano.textContent)
         if(estaMorto(Number(hp_card_dano.innerText), cardSelecionado)){
             cards_meio.children[0].remove()
-            console.log("Jogador 2 morreu")
+            console.log("Jogador 1 morreu")
         }   
-        return "O Jogador 1 ganhou!\nCausou dano no inimigo"
+        return "O Jogador 2 ganhou!\nCausou dano no inimigo"
     }
 
     
@@ -306,3 +317,20 @@ const typesColorsMap = new Map([
     ["steel", "#B8B8D0"],
     ["fairy", "#EE99AC"]
 ]);
+
+
+function Capturar_Pokemon(id_pokemon) {
+    console.log("id_pokemon sendo enviado:", id_pokemon);  // Verifique o valor aqui
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/php_Batalha.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id_pokemon=" + encodeURIComponent(parseInt(id_pokemon)));
+    
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            console.log("Resposta do servidor: " + xhr.responseText);
+        }
+    };
+}
+

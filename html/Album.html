@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pr-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_album.css">
+    <title>Album</title>
+</head>
+<body>
+    <div class="popup">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis vehicula ligula, eget cursus neque. Nam metus dolor, finibus nec vestibulum sit amet, fringilla vitae massa. In rutrum dapibus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut eget lacinia massa. Aliquam scelerisque elit nec ligula porttitor, ut pretium velit auctor. Aenean nec velit quis nunc feugiat rutrum.</p>
+        <i class="fa-solid fa-x"></i>
+    </div>
+    <header>
+        <div id="buttons">
+            <button type="button" id="button_deck">Deck</button>
+            <button type="button" id="button_colecoes">Coleções</button>
+            <input type="number" name="total_cartas" value="0" readonly id="total_cartas">
+        </div>
+        <form action="../php/php_Album.php" method="get">
+            <button type="submit" id="button_pesquisar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="text" name="input_pesquisar" id="input_pesquisar" placeholder="Pesquisar">
+            <select name="filtro" id="select_filtro">
+                <option value="todos">Todos</option>
+                <option value="nome">Nome</option>
+                <option value="id_pokedex">Id Pokedéx</option>
+                <option value="maior_atk">Maior ATK</option>
+                <option value="maior_def">Maior DEF</option>
+                <option value="maior_speed">Maior SPEED</option>
+            </select>
+        </form>
+    </header>
+    <main>
+        
+    </main>
+    <script src="../js/script.js"></script>
+    <script src="../js/script_album.js"></script>
+    <script src="https://kit.fontawesome.com/2d311d7657.js" crossorigin="anonymous"></script>
+</body>
+</html>
