@@ -21,18 +21,37 @@ const valoresJogadores = [];
 var rodada = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
-    for(i=0;i < card.length;i++){
+    for(i=4;i < card.length;i++){
         fetchPokemon(PegarNumeroAleatorio(1, 1025), i);
     }
 
-    // fetchPokemon(10090, 3);
+    fetch('../php/php_Batalha.php')
+    .then(response =>{
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+        return response.json();
+    })
+    .then(data =>{
+        if(!Array.isArray(data)){
+            console.error('A resposta não é um array:', data);
+            return;
+        }
+        var indice = 0;
+        data.forEach(carta =>{
+            console.log(carta.id_carta)
+            console.log(indice)
+            fetchPokemon(carta.id_carta,indice)
+            indice++;
+        })
+    })
 
-    //  fetchPokemon(10036, 4);
-    //  fetchPokemon(10034, 5);
-    // fetchPokemon(10035, 6);
-    //  fetchPokemon(385, 7);
+    .catch(error => {
+        console.error('Erro ao fazer a requisição:', error);
+    });
+
+    
     jogo()
-
 });
 
 
@@ -157,6 +176,7 @@ function jogo(){
         
     }
 }
+
 function batalha(){
     let vencedor=Pedra_Papel_Tesoura(escolhaJogadores[0], escolhaJogadores[1])
     console.log("vencedor"+vencedor)
