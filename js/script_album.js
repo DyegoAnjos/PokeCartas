@@ -1,18 +1,5 @@
-const form_elemento = document.querySelector('form');
-const button_pesquisar_elemento = document.querySelector('#button_pesquisar')
-const input_pesquisar_elemento = document.querySelector('#input_pesquisar')
 const box_pokemon_album_elemento = document.querySelector('main');
 const total_cartas_elemento = document.querySelector('#total_cartas');
-
-button_pesquisar_elemento.addEventListener('click', (e) =>{
-    var regex = new RegExp("^[a-zA-Z0-9]+$");
-    e.preventDefault();
-
-    if(regex.test(input_pesquisar_elemento.value) === false){
-        popup_alert("Campo Inválido");
-    }
-});
-
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('../php/php_album.php')
@@ -55,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
 
-            // Adicionando o elemento da carta no container
             box_pokemon_album_elemento.appendChild(cartaElemento);
             
         });
@@ -63,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             for(i=0;i < card.length;i++){
                 fetchPokemon(data[i].id_carta,card[i]);
             }
-        console.log(totalCartasCount)
         total_cartas_elemento.value = totalCartasCount;
     })
     .catch(error => {
@@ -86,7 +71,6 @@ async function fetchPokemon(pokemon_id, card) {
 
 function inserirInfosPokemon(pokemon, card,pokemon_id) {
 
-    // Acessando os elementos dentro do card
     const cardIdPokemon = card.querySelector('.card_id_pokemon');
     const cardImagePokemon = card.querySelector('.card_image_pokemon');
     const cardNamePokemon = card.querySelector('.card_name_pokemon');
@@ -94,33 +78,26 @@ function inserirInfosPokemon(pokemon, card,pokemon_id) {
     const cardBoxTypePokemon = card.querySelector('.card_box_type_pokemon');
     const cardBoxStatusPokemon = card.querySelector('.box_status_pokemon');
 
-    // Configurando o fundo do card com base no tipo do Pokémon
     card.style.backgroundColor = typesColorsMap.get(pokemon.types[0].type.name);
 
     try {
-        // Caso o Pokémon tenha dois tipos, ajusta as cores correspondentes
         card.style.borderColor = typesColorsMap.get(pokemon.types[1].type.name);
         boxHpPokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
         cardNamePokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
         cardIdPokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
     } catch (error) {
-        // Caso não haja um segundo tipo, não faz nada
+
     }
 
-    // Preenchendo o ID do Pokémon
     cardIdPokemon.innerText = pokemon.id;
 
-    // Preenchendo o valor do HP (ajustado para uma escala de 20 a 150)
     const cardHpValue = boxHpPokemon.querySelector('.value_hp_pokemon');
     cardHpValue.innerText = normalizar(pokemon.stats[0].base_stat, 20, 150);
 
-    // Configurando a imagem do Pokémon
     cardImagePokemon.setAttribute("src", pokemon.sprites.other['official-artwork'].front_default);
 
-    // Preenchendo o nome do Pokémon
     cardNamePokemon.innerText = pokemon.name.toUpperCase();
 
-    // Preenchendo os status do Pokémon (ATK, DEF, SPEED)
     if (pokemon.stats[1].base_stat > pokemon.stats[3].base_stat) {
         cardBoxStatusPokemon.children[0].innerText = `ATK: ${normalizar(pokemon.stats[1].base_stat, 10, 150)}`;
     } else {
@@ -135,12 +112,10 @@ function inserirInfosPokemon(pokemon, card,pokemon_id) {
 
     cardBoxStatusPokemon.children[2].innerText = `SPEED: ${normalizar(pokemon.stats[5].base_stat, 10, 150)}`;
 
-    // Escondendo os tipos do Pokémon que não estão presentes (caso o Pokémon tenha apenas um tipo)
     for (let i = 0; i < 2; i++) {
         cardBoxTypePokemon.children[i].style.display = "none";
     }
 
-    // Preenchendo os tipos do Pokémon
     for (let i = 0; i < pokemon.types.length; i++) {
         cardBoxTypePokemon.children[i].style.display = "block";
         cardBoxTypePokemon.children[i].style.backgroundColor = typesColorsMap.get(pokemon.types[i].type.name);

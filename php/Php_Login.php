@@ -13,22 +13,22 @@
          die($e->getMessage());
     }
 
-    $usuario_email=$_POST["usuario_email"];
-    $usuario_senha=$_POST["usuario_senha"];
+    $keySecurity = 'z3L9XvUu+L1tS';
+    $usuario_email=strtolower($_POST["usuario_email"]);
+    $usuario_senha=md5($_POST["usuario_senha"]);
+    $hash = crypt($usuario_senha, $keySecurity);
     $SQLComando;
     $resultados;
 
     $SQLComando = "SELECT COUNT(*) FROM usuario WHERE e_mail = :usuario_email AND senha = :usuario_senha";
     $stmt = $pdo->prepare($SQLComando);
     $stmt ->bindParam(":usuario_email", $usuario_email, PDO::PARAM_STR);
-    $stmt ->bindParam(":usuario_senha", $usuario_senha, PDO::PARAM_STR);
+    $stmt ->bindParam(":usuario_senha", $hash, PDO::PARAM_STR);
     $stmt->execute();
     $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    echo ($resultados['COUNT(*)']);
     if($resultados['COUNT(*)'] == 0){
-        
-        echo "Usuário não encontrado";
+        header("Location: ../html/AlterarSenha.html");
     }
 
     else{

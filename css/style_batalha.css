@@ -10,7 +10,7 @@ main{
     grid-template-areas: "lado1 meio lado2";
     justify-items: center;
     align-items: stretch;
-   background-image: url(../imgs/background.png);
+    background-image: url(../imgs/background.png);
    
 }
 
@@ -72,8 +72,6 @@ main{
     margin-bottom: .5rem;
 }
 
-
-
 .card_box_type_pokemon{
     width: 100%;
     display: flex;
@@ -129,6 +127,7 @@ main{
 
 #lado1{
     height: 100vh;
+    width: 600px;
     visibility: visible;
     grid-area: lado1;
     display: flex;
@@ -141,6 +140,7 @@ main{
 
 #lado2{
     height: 100vh;
+    width: 600px;
     visibility: visible;
     grid-area: lado2;
     display: flex;
@@ -199,3 +199,100 @@ main{
     box-shadow: 0 0 5px 5px #000000;
 }
 
+.ataque_card_esquerda{
+    animation: ataque_card_esquerda 1s ease-in-out alternate;
+}
+
+.ataque_card_direita{
+    animation: ataque_card_direita 1s ease-in-out alternate;
+}
+
+.dano_card_direita{
+    animation: tomar_dano_card_direita 1s ease-in-out alternate;
+}
+
+.dano_card_esquerda{
+    animation: tomar_dano_card_esquerda 1s ease-in-out alternate;
+}
+
+@keyframes tomar_dano_card_esquerda{
+    0%{
+        transform: translateX(0);
+    }
+   
+    25%{
+        transform: translateX(-25px);
+    }   
+
+    50%{
+        transform: translateX(25px);
+    }
+
+    75%{
+        transform: translateX(-25px);
+    }
+
+    100%{
+        transform: translateX(0);        
+    }
+}
+
+@keyframes tomar_dano_card_direita{
+    0%{
+        transform: translateX(0);
+    }
+   
+    25%{
+        transform: translateX(25px);
+    }   
+
+    50%{
+        transform: translateX(-25px);
+    }
+
+    75%{
+        transform: translateX(25px);
+    }
+
+    100%{
+        transform: translateX(0);        
+    }
+}
+
+@keyframes ataque_card_esquerda{
+    0%{
+        transform: translateX(0) rotate(0deg);   
+    }
+
+    50%{
+        transform: translateX(-100px) rotate(-25deg);
+
+    }
+
+    75%{
+        transform: translateX(100px) rotate(75deg);  
+    }
+
+    100%{
+        transform: translateX(0) rotate(0deg);    
+    }
+}
+
+@keyframes ataque_card_direita{
+    0%{
+        transform: translateX(0) rotate(0deg);   
+    }
+
+    50%{
+        transform: translateX(100px) rotate(25deg);
+
+    }
+
+    75%{
+        transform: translateX(-100px) rotate(-75deg);  
+    }
+
+    100%{
+        transform: translateX(0) rotate(0deg);    
+    }
+}

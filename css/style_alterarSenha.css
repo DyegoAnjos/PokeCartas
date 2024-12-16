@@ -1,0 +1,18 @@
+form{
+    min-height: 500px;
+}
+
+@media  (max-width: 850px) {
+
+    h1{
+        font-size: 3rem;
+    }
+
+    form{
+        width: 80%;
+        height: 60%;
+        border-radius: 5%;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
