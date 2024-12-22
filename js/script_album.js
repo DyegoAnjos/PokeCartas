@@ -1,18 +1,6 @@
-const form_elemento = document.querySelector('form');
-const button_pesquisar_elemento = document.querySelector('#button_pesquisar')
-const input_pesquisar_elemento = document.querySelector('#input_pesquisar')
 const box_pokemon_album_elemento = document.querySelector('main');
 const total_cartas_elemento = document.querySelector('#total_cartas');
-
-button_pesquisar_elemento.addEventListener('click', (e) =>{
-    var regex = new RegExp("^[a-zA-Z0-9]+$");
-    e.preventDefault();
-
-    if(regex.test(input_pesquisar_elemento.value) === false){
-        popup_alert("Campo Inválido");
-    }
-});
-
+const button_voltar = document.querySelector("#button_voltar");
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('../php/php_album.php')
@@ -55,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
 
-            // Adicionando o elemento da carta no container
             box_pokemon_album_elemento.appendChild(cartaElemento);
             
         });
@@ -63,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
             for(i=0;i < card.length;i++){
                 fetchPokemon(data[i].id_carta,card[i]);
             }
-        console.log(totalCartasCount)
         total_cartas_elemento.value = totalCartasCount;
     })
     .catch(error => {
@@ -86,7 +72,6 @@ async function fetchPokemon(pokemon_id, card) {
 
 function inserirInfosPokemon(pokemon, card,pokemon_id) {
 
-    // Acessando os elementos dentro do card
     const cardIdPokemon = card.querySelector('.card_id_pokemon');
     const cardImagePokemon = card.querySelector('.card_image_pokemon');
     const cardNamePokemon = card.querySelector('.card_name_pokemon');
@@ -94,33 +79,26 @@ function inserirInfosPokemon(pokemon, card,pokemon_id) {
     const cardBoxTypePokemon = card.querySelector('.card_box_type_pokemon');
     const cardBoxStatusPokemon = card.querySelector('.box_status_pokemon');
 
-    // Configurando o fundo do card com base no tipo do Pokémon
-    card.style.backgroundColor = typesColorsMap.get(pokemon.types[0].type.name);
+    card.style.backgroundColor = typesMap.get(pokemon.types[0].type.name)?.color;
 
     try {
-        // Caso o Pokémon tenha dois tipos, ajusta as cores correspondentes
-        card.style.borderColor = typesColorsMap.get(pokemon.types[1].type.name);
-        boxHpPokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
-        cardNamePokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
-        cardIdPokemon.style.backgroundColor = typesColorsMap.get(pokemon.types[1].type.name);
+        card.style.borderColor = typesMap.get(pokemon.types[1].type.name)?.color;
+        boxHpPokemon.style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color;
+        cardNamePokemon.style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color;
+        cardIdPokemon.style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color;
     } catch (error) {
-        // Caso não haja um segundo tipo, não faz nada
+
     }
 
-    // Preenchendo o ID do Pokémon
     cardIdPokemon.innerText = pokemon.id;
 
-    // Preenchendo o valor do HP (ajustado para uma escala de 20 a 150)
     const cardHpValue = boxHpPokemon.querySelector('.value_hp_pokemon');
     cardHpValue.innerText = normalizar(pokemon.stats[0].base_stat, 20, 150);
 
-    // Configurando a imagem do Pokémon
     cardImagePokemon.setAttribute("src", pokemon.sprites.other['official-artwork'].front_default);
 
-    // Preenchendo o nome do Pokémon
     cardNamePokemon.innerText = pokemon.name.toUpperCase();
 
-    // Preenchendo os status do Pokémon (ATK, DEF, SPEED)
     if (pokemon.stats[1].base_stat > pokemon.stats[3].base_stat) {
         cardBoxStatusPokemon.children[0].innerText = `ATK: ${normalizar(pokemon.stats[1].base_stat, 10, 150)}`;
     } else {
@@ -135,15 +113,13 @@ function inserirInfosPokemon(pokemon, card,pokemon_id) {
 
     cardBoxStatusPokemon.children[2].innerText = `SPEED: ${normalizar(pokemon.stats[5].base_stat, 10, 150)}`;
 
-    // Escondendo os tipos do Pokémon que não estão presentes (caso o Pokémon tenha apenas um tipo)
     for (let i = 0; i < 2; i++) {
         cardBoxTypePokemon.children[i].style.display = "none";
     }
 
-    // Preenchendo os tipos do Pokémon
     for (let i = 0; i < pokemon.types.length; i++) {
         cardBoxTypePokemon.children[i].style.display = "block";
-        cardBoxTypePokemon.children[i].style.backgroundColor = typesColorsMap.get(pokemon.types[i].type.name);
+        cardBoxTypePokemon.children[i].style.backgroundColor = typesMap.get(pokemon.types[i].type.name)?.color;
         cardBoxTypePokemon.children[i].innerText = pokemon.types[i].type.name.toUpperCase();
     }
 }
@@ -158,22 +134,26 @@ function PegarNumeroAleatorio(min, max) {
 }
 
 
-const typesColorsMap = new Map([
-    ["fire", "#F08030"],
-    ["water", "#6890F0"],
-    ["grass", "#78C850"],
-    ["electric", "#F8D030"],
-    ["ice", "#98D8D8"],
-    ["fighting", "#C03028"],
-    ["poison", "#A040A0"],
-    ["ground", "#E0C068"],
-    ["flying", "#A890F0"],
-    ["psychic", "#F85888"],
-    ["bug", "#A8B820"],
-    ["rock", "#B8A038"],
-    ["ghost", "#705898"],
-    ["dragon", "#7038F8"],
-    ["dark", "#705848"],
-    ["steel", "#B8B8D0"],
-    ["fairy", "#EE99AC"]
+const typesMap = new Map([
+    ["normal", { color: "#9FA19E", sound: "Tackle.mp3" }],
+    ["fire", { color: "#F08030", sound: "BlastBurn.mp3" }],
+    ["water", { color: "#6890F0", sound: "Bubble.mp3" }],
+    ["grass", { color: "#78C850", sound: "BulletSeed.mp3" }],
+    ["electric", { color: "#F8D030", sound: "Electrify.mp3" }],
+    ["ice", { color: "#98D8D8", sound: "Blizzard.mp3" }],
+    ["fighting", { color: "#C03028", sound: "BulletPunch.mp3" }],
+    ["poison", { color: "#A040A0", sound: "AcidSpray.mp3" }],
+    ["ground", { color: "#E0C068", sound: "Dig.mp3" }],
+    ["flying", { color: "#A890F0", sound: "Acrobatics.mp3" }],
+    ["psychic", { color: "#F85888", sound: "CalmMind.mp3" }],
+    ["bug", { color: "#A8B820", sound: "BugBite.mp3" }],
+    ["rock", { color: "#B8A038", sound: "RockTomb.mp3" }],
+    ["ghost", { color: "#705898", sound: "Astonish.mp3" }],
+    ["dragon", { color: "#7038F8", sound: "DragonDance.mp3" }],
+    ["dark", { color: "#705848", sound: "DarkPulse.mp3" }],
+    ["steel", { color: "#B8B8D0", sound: "AnchorShot.mp3" }],
+    ["fairy", { color: "#EE99AC", sound: "FairyWind.mp3" }]
 ]);
+button_voltar.addEventListener('click', () =>{
+    window.location.href = '../html/Menu.html';
+})

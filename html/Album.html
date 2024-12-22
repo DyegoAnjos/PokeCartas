@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_album.css">
-    <title>Album</title>
+    <link rel="stylesheet" href="../css/stye_card.css">
+    <link rel="shortcut icon" href="../imgs/favicon.png" type="image/x-icon">
+    <title>PokeCartas | Album</title>
 </head>
 <body>
     <div class="popup">
@@ -13,25 +15,14 @@
         <i class="fa-solid fa-x"></i>
     </div>
     <header>
+        <audio id="musica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
+            <source src="../audio/Musics/Lake (From _Pokemon Diamond _ Pokemon Pearl_)(MP3_160K).mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio> 
         <div id="buttons">
-            <button type="button" id="button_deck">Deck</button>
-            <button type="button" id="button_colecoes">Coleções</button>
-            <input type="number" name="total_cartas" value="0" readonly id="total_cartas">
+            Total de Cartar: <input type="number" name="total_cartas" value="0" readonly id="total_cartas">
         </div>
-        <form action="../php/php_Album.php" method="get">
-            <button type="submit" id="button_pesquisar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <input type="text" name="input_pesquisar" id="input_pesquisar" placeholder="Pesquisar">
-            <select name="filtro" id="select_filtro">
-                <option value="todos">Todos</option>
-                <option value="nome">Nome</option>
-                <option value="id_pokedex">Id Pokedéx</option>
-                <option value="maior_atk">Maior ATK</option>
-                <option value="maior_def">Maior DEF</option>
-                <option value="maior_speed">Maior SPEED</option>
-            </select>
-        </form>
+        <button type="button" id="button_voltar">Voltar</button>
     </header>
     <main>
         

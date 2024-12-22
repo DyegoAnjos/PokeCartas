@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css"> 
     <link rel="stylesheet" href="../css/style_batalha.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/stye_card.css">
+    <link rel="shortcut icon" href="../imgs/favicon.png" type="image/x-icon">
+    <title>PokeCartas | Batalhar</title>
 </head>
 <body>
     <main>
+        <div id="vitoria">
+            <div class="textos">
+                <h1>Parabés Jogador X</h1>
+                <h2>Você venceu!</h2>
+                <p id="pokemon_capturados">Você capturou X Pokemon</p>
+            </div>
+            
+            
+             <div class="buttons">
+                <button type="button" id="lutar_novamente">Lutar Novamente</button>
+                <button type="button" id="menu">Voltar para o Menu</button>
+             </div>
+             
+        </div>
         <div id="lado1" class="card_box_personagem">
             <div class="card">
                 <div class="card_cabecalho">
@@ -26,15 +42,15 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
             <div class="card">
@@ -53,15 +69,15 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
             <div class="card">
@@ -80,18 +96,18 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" >
                 <div class="card_cabecalho">
                 <h3 class="card_id_pokemon">0001</h3>
                 <div class="box_hp_pokemon">
@@ -107,20 +123,26 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                    <p class="atk_pokemon">
+                    <button type="button" class="atk_pokemon">
                         ATK: 100
-                    </p>
-                    <p class="def_pokemon">
-                     DEF: 100
-                    </p>
-                    <p class="spe_pokemon">
+                    </button>
+                    <button type="button" class="def_pokemon">
+                        DEF: 100
+                    </button>
+                    <button type="button" class="spe_pokemon">
                         SPEED: 100
-                    </p>
+                    </button>
                 </div>
             </div>
             
         </div>
         <div id="meio" class="battel_box_personagem">
+            <button type="button" id="button_voltar">Voltar</button>
+            <audio id="musica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
+                <source src="../audio/Musics/Victory Lies Before You (From _Pokemon Black and White_)(MP3_160K).mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+              
             <textarea name="resultado" id="resultado" readonly>Vez do jogador 1&#10;Escolha seu pokemon e aperte em Finalizar</textarea>
             <div id="card_ativos">
                 
@@ -132,7 +154,7 @@
             
         </div>
         <div id="lado2" class="card_box_personagem">
-            <div class="card">
+            <div class="card ">
                 <div class="card_cabecalho">
                 <h3 class="card_id_pokemon">0001</h3>
                 <div class="box_hp_pokemon">
@@ -148,15 +170,15 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+                <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
             <div class="card">
@@ -175,15 +197,15 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
             <div class="card">
@@ -202,15 +224,15 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
             <div class="card">
@@ -229,20 +251,18 @@
                 <p class="type2_pokemon">GHOST</p>
                 </div>
                 <div class="box_status_pokemon">
-                <p class="atk_pokemon">
+               <button type="button" class="atk_pokemon">
                     ATK: 100
-                </p>
-                <p class="def_pokemon">
+                </button>
+                <button type="button" class="def_pokemon">
                     DEF: 100
-                </p>
-                <p class="spe_pokemon">
+                </button>
+                <button type="button" class="spe_pokemon">
                     SPEED: 100
-                </p>
+                </button>
                 </div>
             </div>
         </div>
-        
-        
     </main>
     <footer></footer>
     <script src="../js/script_batalha.js"></script>

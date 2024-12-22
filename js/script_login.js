@@ -21,7 +21,6 @@ botao_visuializar.addEventListener('click', () => {
 
 form_elemento.addEventListener("submit", (e)=>{
     var regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    console.log(input_email_elemento.value)
     if(regex.test(input_email_elemento.value) === false){
         e.preventDefault()
         popup_alert("E-mail ou senha inválidos")

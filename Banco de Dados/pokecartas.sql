@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Dez-2024 às 19:13
+-- Tempo de geração: 17-Dez-2024 às 18:48
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -37,9 +37,9 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`id_album`, `id_usuario`) VALUES
-(1, 9),
-(2, 10),
-(3, 11);
+(1, 1),
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -58,82 +58,162 @@ CREATE TABLE `album_carta` (
 --
 
 INSERT INTO `album_carta` (`id_album_carta`, `id_album`, `id_carta`) VALUES
-(5, 1, 200),
-(6, 1, 791),
-(7, 1, 870),
-(8, 1, 992),
-(9, 1, 709),
-(10, 1, 609),
-(11, 1, 607),
-(12, 1, 389),
-(13, 1, 1006),
-(14, 1, 606),
-(15, 2, 806),
-(16, 2, 55),
-(17, 2, 401),
-(18, 2, 808),
-(19, 2, 469),
-(20, 2, 81),
-(21, 3, 115),
-(22, 3, 676);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `carta`
---
-
-CREATE TABLE `carta` (
-  `id_carta` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `colecao`
---
-
-CREATE TABLE `colecao` (
-  `id_colecao` int(12) NOT NULL,
-  `nome` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `colecao_carta`
---
-
-CREATE TABLE `colecao_carta` (
-  `id_colecao_carta` int(12) NOT NULL,
-  `id_carta` int(12) DEFAULT NULL,
-  `id_colecao` int(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `deck`
---
-
-CREATE TABLE `deck` (
-  `id_deck` int(12) NOT NULL,
-  `nome` varchar(225) DEFAULT NULL,
-  `id_usuario` int(12) DEFAULT NULL,
-  `PokemonDestaque` int(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `deck_carta`
---
-
-CREATE TABLE `deck_carta` (
-  `id_deck_carta` int(12) NOT NULL,
-  `id_deck` int(12) DEFAULT NULL,
-  `id_usuario` int(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(1, 1, 1),
+(2, 1, 7),
+(3, 1, 4),
+(4, 1, 25),
+(5, 1, 17),
+(6, 1, 12),
+(7, 1, 99),
+(8, 1, 128),
+(9, 1, 799),
+(10, 1, 668),
+(11, 1, 608),
+(12, 1, 557),
+(13, 1, 728),
+(14, 1, 656),
+(15, 1, 661),
+(16, 1, 612),
+(17, 1, 1005),
+(18, 1, 282),
+(19, 1, 483),
+(20, 1, 584),
+(21, 1, 85),
+(22, 1, 785),
+(23, 1, 800),
+(24, 1, 607),
+(25, 1, 766),
+(26, 1, 379),
+(27, 1, 788),
+(28, 1, 830),
+(29, 1, 962),
+(30, 1, 791),
+(31, 1, 757),
+(32, 1, 479),
+(33, 1, 242),
+(34, 1, 477),
+(35, 1, 722),
+(36, 1, 772),
+(37, 1, 792),
+(38, 1, 709),
+(39, 1, 727),
+(40, 1, 109),
+(41, 1, 869),
+(42, 1, 904),
+(43, 1, 612),
+(44, 1, 708),
+(45, 1, 577),
+(46, 1, 829),
+(47, 1, 1025),
+(48, 1, 987),
+(49, 1, 1009),
+(50, 1, 911),
+(51, 1, 787),
+(52, 1, 895),
+(53, 1, 855),
+(54, 1, 484),
+(55, 1, 984),
+(56, 1, 724),
+(57, 1, 925),
+(58, 1, 416),
+(59, 1, 737),
+(60, 1, 737),
+(61, 1, 402),
+(62, 1, 1002),
+(63, 1, 124),
+(64, 1, 737),
+(65, 1, 69),
+(66, 1, 498),
+(67, 1, 116),
+(68, 1, 960),
+(69, 1, 1000),
+(70, 1, 415),
+(71, 1, 174),
+(72, 1, 491),
+(73, 1, 107),
+(74, 1, 94),
+(75, 1, 215),
+(76, 1, 303),
+(77, 1, 126),
+(78, 1, 664),
+(79, 1, 922),
+(80, 1, 936),
+(81, 1, 593),
+(82, 1, 803),
+(83, 1, 894),
+(84, 1, 331),
+(85, 1, 681),
+(86, 1, 720),
+(87, 1, 957),
+(88, 1, 760),
+(89, 1, 259),
+(90, 1, 866),
+(91, 1, 964),
+(92, 1, 119),
+(93, 1, 40),
+(94, 1, 441),
+(95, 1, 322),
+(96, 1, 89),
+(97, 1, 742),
+(98, 1, 847),
+(99, 1, 851),
+(100, 1, 223),
+(101, 1, 765),
+(102, 1, 370),
+(103, 1, 884),
+(104, 1, 916),
+(105, 1, 577),
+(106, 1, 840),
+(107, 1, 1009),
+(108, 1, 777),
+(109, 1, 247),
+(110, 1, 367),
+(111, 1, 753),
+(112, 1, 869),
+(113, 1, 535),
+(114, 1, 1012),
+(115, 1, 519),
+(116, 1, 48),
+(117, 2, 1),
+(118, 2, 7),
+(119, 2, 4),
+(120, 2, 25),
+(121, 2, 17),
+(122, 2, 12),
+(123, 2, 99),
+(124, 2, 128),
+(125, 2, 163),
+(126, 2, 382),
+(127, 2, 837),
+(128, 2, 458),
+(129, 2, 185),
+(130, 2, 188),
+(131, 2, 639),
+(132, 2, 5),
+(133, 2, 460),
+(134, 2, 145),
+(135, 2, 84),
+(136, 2, 254),
+(137, 2, 951),
+(138, 2, 667),
+(139, 2, 49),
+(140, 3, 1),
+(141, 3, 7),
+(142, 3, 4),
+(143, 3, 25),
+(144, 3, 17),
+(145, 3, 12),
+(146, 3, 99),
+(147, 3, 128),
+(148, 3, 621),
+(149, 3, 921),
+(150, 3, 57),
+(151, 3, 565),
+(152, 3, 476),
+(153, 3, 445),
+(154, 3, 948),
+(155, 3, 42),
+(156, 3, 512);
 
 -- --------------------------------------------------------
 
@@ -153,26 +233,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `e_mail`, `senha`) VALUES
-(1, 'Teste', 'Teste@gmail.com', 'Teste@1234'),
-(2, 'Dyego', 'dyegocordeiro@gmail.com', 'An@45678'),
-(3, 'Mestre Pokemon', 'mestrepokemon@gmail.com', 'MestrePokemon@69'),
-(4, 'dyego2', 'dyego2@gmail.com', '12345678@An'),
-(5, 'dyego3', 'dyego3@gmail.com', '123456789@An'),
-(9, 'dyego4', 'dyego4@gmail.com', '123456789@An'),
-(10, 'Pedro cavalo', 'pedindakaxeta@123.cl', '12345aB@'),
-(11, 'HadesAnjos', 'hadesanjos@gmail.comm', 'H4d3s@nj0s');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `usuario_carta`
---
-
-CREATE TABLE `usuario_carta` (
-  `id_usuario_cartas` int(12) NOT NULL,
-  `id_usuario` int(12) DEFAULT NULL,
-  `id_carta` int(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(1, 'MestrePokemon', 'mestrepokemon@gmail.com', 'z3atQF1QhbGkM'),
+(2, 'tebaroli', 'algumacoisa@gmail.com', 'z3QRJduLUhc3k'),
+(3, 'Art2007', 'arthur@gmail.com', 'z32K/OaY6sAEs');
 
 --
 -- Índices para tabelas despejadas
@@ -193,54 +256,11 @@ ALTER TABLE `album_carta`
   ADD KEY `id_album` (`id_album`);
 
 --
--- Índices para tabela `carta`
---
-ALTER TABLE `carta`
-  ADD PRIMARY KEY (`id_carta`);
-
---
--- Índices para tabela `colecao`
---
-ALTER TABLE `colecao`
-  ADD PRIMARY KEY (`id_colecao`);
-
---
--- Índices para tabela `colecao_carta`
---
-ALTER TABLE `colecao_carta`
-  ADD PRIMARY KEY (`id_colecao_carta`),
-  ADD UNIQUE KEY `id_carta` (`id_carta`),
-  ADD UNIQUE KEY `id_colecao` (`id_colecao`);
-
---
--- Índices para tabela `deck`
---
-ALTER TABLE `deck`
-  ADD PRIMARY KEY (`id_deck`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Índices para tabela `deck_carta`
---
-ALTER TABLE `deck_carta`
-  ADD PRIMARY KEY (`id_deck_carta`),
-  ADD UNIQUE KEY `id_deck` (`id_deck`),
-  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
-
---
 -- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `e_mail` (`e_mail`);
-
---
--- Índices para tabela `usuario_carta`
---
-ALTER TABLE `usuario_carta`
-  ADD PRIMARY KEY (`id_usuario_cartas`),
-  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
-  ADD UNIQUE KEY `id_carta` (`id_carta`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -256,43 +276,13 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT de tabela `album_carta`
 --
 ALTER TABLE `album_carta`
-  MODIFY `id_album_carta` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT de tabela `colecao`
---
-ALTER TABLE `colecao`
-  MODIFY `id_colecao` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `colecao_carta`
---
-ALTER TABLE `colecao_carta`
-  MODIFY `id_colecao_carta` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `deck`
---
-ALTER TABLE `deck`
-  MODIFY `id_deck` int(12) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `deck_carta`
---
-ALTER TABLE `deck_carta`
-  MODIFY `id_deck_carta` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_album_carta` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de tabela `usuario_carta`
---
-ALTER TABLE `usuario_carta`
-  MODIFY `id_usuario_cartas` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
@@ -303,33 +293,6 @@ ALTER TABLE `usuario_carta`
 --
 ALTER TABLE `album_carta`
   ADD CONSTRAINT `album_carta_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `album` (`id_album`) ON DELETE CASCADE;
-
---
--- Limitadores para a tabela `colecao_carta`
---
-ALTER TABLE `colecao_carta`
-  ADD CONSTRAINT `colecao_carta_ibfk_1` FOREIGN KEY (`id_carta`) REFERENCES `carta` (`id_carta`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `colecao_carta_ibfk_2` FOREIGN KEY (`id_colecao`) REFERENCES `colecao` (`id_colecao`) ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `deck`
---
-ALTER TABLE `deck`
-  ADD CONSTRAINT `deck_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `deck_carta`
---
-ALTER TABLE `deck_carta`
-  ADD CONSTRAINT `deck_carta_ibfk_1` FOREIGN KEY (`id_deck`) REFERENCES `deck` (`id_deck`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `deck_carta_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `usuario_carta`
---
-ALTER TABLE `usuario_carta`
-  ADD CONSTRAINT `usuario_carta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_carta_ibfk_2` FOREIGN KEY (`id_carta`) REFERENCES `carta` (`id_carta`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
