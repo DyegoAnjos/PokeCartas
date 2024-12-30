@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/style_cadastro.css">
+    <link rel="stylesheet" href="../../public/css/style_alterarSenha.css">
+    <link rel="shortcut icon" href="../../public/favicon.png" type="image/x-icon">
+    <title>PokeCartas | Alterar Senha</title>
+</head>
+<body>
+    <header>
+        <audio id="audioMusica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
+            <source src="../../public/audio/Musics/Title Screen (From _Pokemon Black and White_)(MP3_160K).mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio> 
+    </header>
+    <div class="popup">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis vehicula ligula, eget cursus neque. Nam metus dolor, finibus nec vestibulum sit amet, fringilla vitae massa. In rutrum dapibus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut eget lacinia massa. Aliquam scelerisque elit nec ligula porttitor, ut pretium velit auctor. Aenean nec velit quis nunc feugiat rutrum.</p>
+        <i class="fa-solid fa-x"></i>
+    </div>
+    <main>
+        <form action="../../app/php_AlterarSenha.php" method="post">
+            <h1>Nova Senha</h1>
+            <div id="divCorpoFormulario">
+                <div class="divCampos" id="divNome">
+                    <p>Nome</p>
+                    <input type="text" name="usuarioNome" id="usuarioNome" placeholder="Ex: HadesAnjos">
+                </div>
+                <div class="divCampos" id="divEmail">
+                    <p>E-mail</p>
+                    <input type="text" name="usuarioEmail" id="usuarioEmail" placeholder="Ex: HadesAnjos@gmail.com">
+                </div>
+                <div class="divCampos" id="divSenha">
+                    <p>Nova senha</p>
+                    <div id="divCampoSenha">
+                        <input type="password" name="usuarioSenha" id="usuarioSenha" placeholder="Ex: H4d3s@4nj05" title="A senha deve ter 8 caracteres, no mínimo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 símbolo">
+                        <div class="botaoVisualizar">
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div> 
+                    </div>
+                </div>
+                <input type="submit" value="Trocar Senha" id="botaoLogar">
+            </div>
+            <div id="footer_form">
+                <p>Voltar para&nbsp;</p><a href="Menu.html">Menu</a>
+            </div>
+        </form>
+    </main>
+    <script src="https://kit.fontawesome.com/2d311d7657.js" crossorigin="anonymous"></script>
+    <script src="../../public/js/script_alterarSenha.js"></script>
+    <script src="../../public/js/script.js"></script>
+</body>
+</html>

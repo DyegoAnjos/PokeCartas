@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/style.css"> 
+    <link rel="stylesheet" href="../../public/css/style_batalha.css">
+    <link rel="stylesheet" href="../../public/css/stye_carta.css">
+    <link rel="shortcut icon" href="../../public/favicon.png" type="image/x-icon">
+    <title>PokeCartas | Batalhar</title>
+</head>
+<body>
+    <main>
+        <div id="divVitoria">
+            <div class="textos">
+                <h1>Parabés Jogador X</h1>
+                <h2>Você venceu!</h2>
+                <p id="pokemon_capturados">Você capturou X Pokemon</p>
+            </div>
+            
+            
+             <div class="divBotoes">
+                <button type="button" id="botaoLutarNovamente">Lutar Novamente</button>
+                <button type="button" id="botaoMenu">Voltar para o Menu</button>
+             </div>
+             
+        </div>
+        <div id="CaixaPersonagemLado1" class="CaixaPersonagemCarta">
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+        </div>
+        <div id="CaixaPersonagemMeio" class="CaixaPersonagemBatalha">
+            <button type="button" id="botaoVoltar">Voltar</button>
+            <audio id="audioMusica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
+                <source src="../../public/audio/Musics/Victory Lies Before You (From _Pokemon Black and White_)(MP3_160K).mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+              
+            <textarea name="textoResultado" id="textoResultado" readonly>Vez do jogador 1&#10;Escolha seu pokemon e aperte em Finalizar</textarea>
+            <div id="cartaAtivos"></div>
+            <div id="caixaBotao">
+                <button type="button" id="botaoProximaRodada">Próxima Rodada</button>
+            </div>
+        </div>
+        <div id="CaixaPersonagemLado2" class="CaixaPersonagemCarta">
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="cartaDivCabecalho">
+                    <h3 class="cartaIdPokemon">???</h3>
+                    <div class="caixaVidaPokemon">
+                        <h3 class="ValoVidaPokemon">???</h3>
+                        <h3 class="textoVidaPokemon">HP</h3>
+                     </div>
+                
+                </div>
+                <img src="../../public/favicon.png"  class="cartaImagePokemon">
+                <h2 class="cartaNomePokemon">???</h2>
+                <div class="cartaCaixaTipoPokemon">
+                    <p class="tipo1Pokemon">???</p>
+                    <p class="tipo2Pokemon">???</p>
+                </div>
+                <div class="caixaAtributosPokemon">
+               <button type="button" class="ataquePokemon">
+                    ATK: ???
+                </button>
+                <button type="button" class="defesaPokemon">
+                    DEF: ???
+                </button>
+                <button type="button" class="velocidadePokemon">
+                    SPEED: ???
+                </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="../../public/js/script_batalha.js"></script>
+</body>
+</html>
