@@ -4,21 +4,26 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/DyegoAnjos/Portfolio?style=for-the-badge)
 
 
-> Projeto de conclusão do ensino médio técnico TCC
+> Jogo de tomada de decisões e gerenciamento de riscos aplicado em uma temática de jogo de cartas de Pokemon
 
-### Ajustes e melhorias
+
+### 🛠 Futuras Atualizações
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [x] Cadastro de jogador
-- [x] Layout inicial
-- [x] Função de colecionar
-- [ ] Cadastro de Deck
-- [ ] Implementação de deck na batalha
-## 💻 Habilidades no Projeto
+- [x] SFX
+- [ ] Ajuste e aplicação de normas no código 
+- [ ] Elementos gráficos de captura
+- [ ] Tela de carregamento
+- [ ] Implementação de funções de pesquisa no álbum
+- [ ] Criação de Decks
+- [ ] Hospedagem
+
+## 💻 Habilidades e linguagens utilizadas no projeto
 
 - HTML
 - CSS
 - JS
 - API
 - MySQL
+- PHP

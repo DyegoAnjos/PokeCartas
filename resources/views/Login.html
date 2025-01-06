@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/style_login.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="shortcut icon" href="../../public/favicon.png" type="image/x-icon">
+    <title>PokeCartas | Login</title>
+</head>
+<body>
+    
+    <header>
+        <audio id="audioMusica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
+            <source src="../../public/audio/Musics/Title Screen (From _Pokemon Black and White_)(MP3_160K).mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio> 
+    </header>
+    <main>
+        <div class="popup">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis vehicula ligula, eget cursus neque. Nam metus dolor, finibus nec vestibulum sit amet, fringilla vitae massa. In rutrum dapibus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut eget lacinia massa. Aliquam scelerisque elit nec ligula porttitor, ut pretium velit auctor. Aenean nec velit quis nunc feugiat rutrum.</p>
+            <i class="fa-solid fa-x"></i>
+        </div>
+        <form action="../../app/LogarUsuario.php" method="post">
+            <h1>Login</h1>
+            <div id="CorpoFormulario">
+                <div class="divCampos" id="divEmail">
+                    <p>E-mail</p>
+                    <input type="text" name="usuarioEmail" id="usuarioEmail" placeholder="Ex: usuario@gmail.com">
+                </div>
+                <div class="divCampos" id="divSenha">
+                    <p>Senha</p>
+                    <div id="divCampoSenha">
+                        <input type="password" name="usuarioSenha" id="usuarioSenha" placeholder="Ex: 12304jhf@lkhf" >
+                        <div class="botaoVisualizar">
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div> 
+                    </div>
+                </div>
+                <input type="submit" value="Logar" id="botaoLogar">
+            </div>
+            <div id="footer_form">
+                <p>Não possui uma conta?&nbsp;</p> <a href="Cadastro.html">Cadastre-se</a>
+            </div>
+        </form>
+    </main>
+    <script src="https://kit.fontawesome.com/2d311d7657.js" crossorigin="anonymous"></script>
+    <script src="../../public/js/script_login.js"></script>
+    <script src="../../public/js/script.js"></script>
+</body>
+</html>
