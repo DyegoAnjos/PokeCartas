@@ -1,27 +1,13 @@
 <?php
-    $host = 'localhost';
-    $banco = "pokecartas";
-    $usuario = 'root';
-    $senha = '';
-    $dsn = "mysql:host={$host};port=3306;dbname={$banco}";
-    try{
-        $pdo = new PDO($dsn, $usuario, $senha);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-
-    catch (PDOException $e){
-        die($e->getMessage());
-    }
+    include 'ConectarBanco.php';
 
     $SQLComando;
     $resultados;
-    $retorno = '';
-    $cartas = [];
 
     session_start();
     $SQLComando = "SELECT a.id_album FROM usuario u, album a WHERE u.id_usuario = a.id_usuario AND u.e_mail = :usuarioEmail";
     $stmt = $pdo->prepare($SQLComando);
-    $stmt->bindParam(":usuarioEmail", $_SESSION['usuario_logado_email'], PDO::PARAM_STR);
+    $stmt->bindParam(":usuarioEmail", $_SESSION['UsuarioLogadoEmail'], PDO::PARAM_STR);
     $stmt->execute();
     $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
 

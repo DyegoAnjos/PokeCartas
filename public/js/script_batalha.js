@@ -2,24 +2,18 @@ const CaixaPersonagemMeio = document.querySelector("#CaixaPersonagemMeio")
 const CaixaPersonagemLado1 = document.querySelector("#CaixaPersonagemLado1")
 const CaixaPersonagemLado2 = document.querySelector("#CaixaPersonagemLado2")
 
-const carta = document.querySelectorAll(".carta")
-const cartaIdPokemon = document.querySelectorAll(".cartaIdPokemon")
-const carta_hp_value = document.querySelectorAll(".ValoVidaPokemon")
-const cartaImagePokemon = document.querySelectorAll(".cartaImagePokemon")
-const cartaNomePokemon = document.querySelectorAll(".cartaNomePokemon")
-const carta_caixaAtributosPokemon = document.querySelectorAll(".caixaAtributosPokemon")
-const cartaCaixaTipoPokemon = document.querySelectorAll(".cartaCaixaTipoPokemon")
-const caixaVidaPokemon = document.querySelectorAll(".caixaVidaPokemon")
+const carta = document.querySelectorAll(".carta");
+
 
 const sumario = document.querySelector("#textoResultado")
 const botaoProximaRodada = document.querySelector("#botaoProximaRodada")
 
 
 const telaFinal = document.querySelector("#divVitoria")
-const buttonJogarNovamente = document.querySelector("#botaoLutarNovamente")
-const buttonMenu = document.querySelector("#botaoMenu")
+const botaoJogarNovamente = document.querySelector("#botaoLutarNovamente")
+const botaMenu = document.querySelector("#botaoMenu")
 
-const cartas_meio = document.querySelector("#cartaAtivos");
+const cartasMeio = document.querySelector("#cartaAtivos");
 const botaoVoltar = document.querySelector("#botaoVoltar");
 
 var pokemonCries = [];
@@ -35,20 +29,16 @@ const escolhaJogadores = [];
 const valoresJogadores = [];
 var rodada = 1;
 
-buttonJogarNovamente.addEventListener('click', () =>{
+botaoJogarNovamente.addEventListener('click', () =>{
     window.location.href =  '../../resourcs/views/Batalha.html';
 })
 
-buttonMenu.addEventListener('click', () =>{
+botaMenu.addEventListener('click', () =>{
     window.location.href =  '../../resourcs/views/Menu.html';
 })
 
 document.addEventListener('DOMContentLoaded', function() {
-    for(i=4;i < carta.length;i++){
-        fetchPokemon(PegarNumeroAleatorio(1, 1025), i);
-    }
-
-    fetch('../../app/php_batalha.php')
+    fetch('../../app/BuscarCartaBatalha.php')
     .then(response =>{
         if (!response.ok) {
             throw new Error('Erro na requisição');
@@ -61,86 +51,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         var indice = 0;
-        data.forEach(carta =>{
-            fetchPokemon(carta.id_carta,indice)
+        data.forEach(cartaBD =>{
+            fetchPokemon(cartaBD.id_carta, carta[indice])
             indice++;
         })
     })
-
     .catch(error => {
         console.error('Erro ao fazer a requisição:', error);
     });
-
+    for(i=4;i < carta.length;i++){
+        fetchPokemon(PegarNumeroAleatorio(1, 1025), carta[i]);
+    }
     jogo()
 });
 
-async function fetchPokemon(pokemon_id, cod_carta) {
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemon_id}`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Pokémon não encontrado');
-        }
-        const pokemon = await response.json();
-        inserirInfosPokemon(pokemon, cod_carta);
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-function inserirInfosPokemon(pokemon, cod_carta){
-    carta[cod_carta].style.backgroundColor = typesMap.get(pokemon.types[0].type.name)?.color
-    try{
-        carta[cod_carta].style.borderColor = typesMap.get(pokemon.types[1].type.name)?.color
-        caixaVidaPokemon[cod_carta].style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color
-        cartaNomePokemon[cod_carta].style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color
-        cartaIdPokemon[cod_carta].style.backgroundColor = typesMap.get(pokemon.types[1].type.name)?.color
-    }
-    catch{
-
-    }
-
-    cartaIdPokemon[cod_carta].innerText= pokemon.id;
-    carta_hp_value[cod_carta].innerText = normalizar(pokemon.stats[0].base_stat, 20, 150)
-    cartaImagePokemon[cod_carta].setAttribute("src", pokemon.sprites.other['official-artwork'].front_default);
-
-    cartaNomePokemon[cod_carta].innerText = pokemon.name.toUpperCase()
-    if(pokemon.stats[1].base_stat > pokemon.stats[3].base_stat)
-        carta_caixaAtributosPokemon[cod_carta].children[0].innerText = `ATK: ${normalizar(pokemon.stats[1].base_stat, 10, 150)}`
-    else
-        carta_caixaAtributosPokemon[cod_carta].children[0].innerText = `ATK: ${normalizar(pokemon.stats[3].base_stat, 10, 150)}`
-
-    if(pokemon.stats[2].base_stat > pokemon.stats[4].base_stat)
-        carta_caixaAtributosPokemon[cod_carta].children[1].innerText = `DEF: ${normalizar(pokemon.stats[2].base_stat, 10, 150)}`
-    else
-        carta_caixaAtributosPokemon[cod_carta].children[1].innerText = `DEF: ${normalizar(pokemon.stats[4].base_stat, 10, 150)}`
-    
-    carta_caixaAtributosPokemon[cod_carta].children[2].innerText = `SPEED: ${normalizar(pokemon.stats[5].base_stat, 10, 150)}`
-
-    for(let i=0; i < 2; i++){
-        cartaCaixaTipoPokemon[cod_carta].children[i].style.display="none"
-    }
-
-
-
-    for(let i = 0; i <= pokemon.types.length-1;i++){
-        cartaCaixaTipoPokemon[cod_carta].children[i].style.display = "block"
-        cartaCaixaTipoPokemon[cod_carta].children[i].style.backgroundColor = typesMap.get(pokemon.types[i].type.name)?.color
-        cartaCaixaTipoPokemon[cod_carta].children[i].innerText = pokemon.types[i].type.name.toUpperCase()
-    }
-
-   
-}
-
 function jogo(){
-    if(cartas_meio.children.length == 2 && rodada > 4){
+    if(cartasMeio.children.length == 2 && rodada > 4)
         rodada = 2
-    }
 
-    else if(rodada > 4){
+    else if(rodada > 4)
         rodada = 1
-    }
         
     switch(rodada){
         case 1:{
@@ -153,32 +83,29 @@ function jogo(){
         }break;
         case 2:{        
             //Fase de escolha do jogador 1   
-            if(cartas_meio.children.length < 2){
+            if(cartasMeio.children.length < 2){
                 rodada=1;
                 jogo();
             }
             else{
-                
                 botaoProximaRodada.disabled = true;
                 EscreverTextoAosPoucos(sumario, "Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar",20);
-                cartas_meio.children[0].style.display = "flex";
-                cartas_meio.children[1].style.display = "none";
-                const elemento = cartas_meio.children[0].children[4];
+                cartasMeio.children[0].style.display = "flex";
+                cartasMeio.children[1].style.display = "none";
                 setTimeout(() =>{
                     for (let i = 0; i < 3; i++) {
-                        cartas_meio.children[1].children[4].children[i].disabled = true;
-                        cartas_meio.children[0].children[4].children[i].disabled = false;
+                        cartasMeio.children[1].children[4].children[i].disabled = true;
+                        cartasMeio.children[0].children[4].children[i].disabled = false;
                     }
                     for (let i = 0; i < 3; i++) {
-                        const filho = elemento.children[i];
-                        filho.addEventListener('click', () => {
-                            valoresJogadores[0] = Number(filho.innerText.match(/\d+/g));
+                        const atributoEscolhido = cartasMeio.children[0].children[4].children[i];
+                        atributoEscolhido.addEventListener('click', () => {
+                            valoresJogadores[0] = Number(atributoEscolhido.innerText.match(/\d+/g));
                             escolhaJogadores[0] = i;
-                            sumario.value= `Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${filho.innerText}`
+                            sumario.value= `Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${atributoEscolhido.innerText}`
                             botaoProximaRodada.disabled = false;
                         });
                     }
-                    
                 }, 2000)
             }
             
@@ -188,21 +115,19 @@ function jogo(){
             //Fase de escolha do jogador 2
             botaoProximaRodada.disabled = true;
             EscreverTextoAosPoucos(sumario, "Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar",20);
-            cartas_meio.children[1].style.display = "flex";
-            cartas_meio.children[0].style.display = "none";
-            const elemento = cartas_meio.children[1].children[4];
-
+            cartasMeio.children[1].style.display = "flex";
+            cartasMeio.children[0].style.display = "none";
             setTimeout(() =>{
                 for (let i = 0; i < 3; i++) {
-                    cartas_meio.children[0].children[4].children[i].disabled = true;
-                    cartas_meio.children[1].children[4].children[i].disabled = false;
+                    cartasMeio.children[0].children[4].children[i].disabled = true;
+                    cartasMeio.children[1].children[4].children[i].disabled = false;
                 }
                 for (let i = 0; i < 3; i++) {
-                    const filho = elemento.children[i];
-                    filho.addEventListener('click', () => {
-                        valoresJogadores[1] = Number(filho.innerText.match(/\d+/g));
+                    const atributoEscolhido = cartasMeio.children[1].children[4].children[i];
+                    atributoEscolhido.addEventListener('click', () => {
+                        valoresJogadores[1] = Number(atributoEscolhido.innerText.match(/\d+/g));
                         escolhaJogadores[1] = i;
-                        sumario.value= `Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${filho.innerText}`
+                        sumario.value= `Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${atributoEscolhido.innerText}`
                         botaoProximaRodada.disabled = false;
                    });
                 }
@@ -213,19 +138,16 @@ function jogo(){
         case 4:{
             //Fase de batalha
             for (let i = 0; i < 3; i++) {
-                cartas_meio.children[1].children[4].children[i].disabled = true;
+                cartasMeio.children[1].children[4].children[i].disabled = true;
             }
             botaoProximaRodada.disabled = true;
-            cartas_meio.children[1].style.display = "flex";
-            cartas_meio.children[0].style.display = "flex";
+            cartasMeio.children[1].style.display = "flex";
+            cartasMeio.children[0].style.display = "flex";
             EscreverTextoAosPoucos(sumario, `O resultado foi ` + batalha() + `\nClique em Finalizar para a próxima rodada`,20);
             setTimeout(() =>{
                 botaoProximaRodada.disabled = false;
             }, 3000)
             
-            console.log(vitorias[0])
-            console.log(vitorias[1])
-
             setTimeout(() =>{
                 if((CaixaPersonagemLado1.children.length == 0 && CaixaPersonagemLado1.children.length == 0) && vitorias[0] == 4 && vitorias[1] == 4){
                     telaFinal.style.display = "flex";
@@ -257,44 +179,44 @@ function batalha(){
     let vencedor=PedraPapelTesoura(escolhaJogadores[0], escolhaJogadores[1])
     if(vencedor === "empate"){
         let morto = [0,0] 
-        let hpcartaDerrotado = [];
-        hpcartaDerrotado[0] = cartas_meio.children[0].children[0].children[1].children[0];
-        hpcartaDerrotado[1] = cartas_meio.children[1].children[0].children[1].children[0];
+        let vidaCartaDerrotada = [];
+        vidaCartaDerrotada[0] = cartasMeio.children[0].children[0].children[1].children[0];
+        vidaCartaDerrotada[1] = cartasMeio.children[1].children[0].children[1].children[0];
         
-        morto[0] = VerificarEstarMorto(Number(hpcartaDerrotado[0].innerText) - valoresJogadores[1])
-        morto[1] = VerificarEstarMorto(Number(hpcartaDerrotado[1].innerText) - valoresJogadores[0])
+        morto[0] = VerificarEstarMorto(Number(vidaCartaDerrotada[0].innerText) - valoresJogadores[1])
+        morto[1] = VerificarEstarMorto(Number(vidaCartaDerrotada[1].innerText) - valoresJogadores[0])
 
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartas_meio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartas_meio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
-        TocarSomPokemon(cartas_meio.children[0].children[0].children[0].innerText);
-        TocarSomPokemon(cartas_meio.children[1].children[0].children[0].innerText);
+        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSomPokemon(cartasMeio.children[0].children[0].children[0].innerText);
+        TocarSomPokemon(cartasMeio.children[1].children[0].children[0].innerText);
 
-        cartas_meio.children[0].classList.add("ataque_carta_esquerda");
-        cartas_meio.children[1].classList.add("ataque_carta_direita");
+        cartasMeio.children[0].classList.add("ataque_carta_esquerda");
+        cartasMeio.children[1].classList.add("ataque_carta_direita");
         
         setTimeout(() =>{
-            cartas_meio.children[0].classList.add("dano_carta_esquerda");
-            cartas_meio.children[1].classList.add("dano_carta_direita");
+            cartasMeio.children[0].classList.add("dano_carta_esquerda");
+            cartasMeio.children[1].classList.add("dano_carta_direita");
             TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
             TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
-            hpcartaDerrotado[0].innerText = Number(hpcartaDerrotado[0].innerText) - valoresJogadores[1];
-            hpcartaDerrotado[1].innerText = Number(hpcartaDerrotado[1].innerText) - valoresJogadores[0];            
+            vidaCartaDerrotada[0].innerText = Number(vidaCartaDerrotada[0].innerText) - valoresJogadores[1];
+            vidaCartaDerrotada[1].innerText = Number(vidaCartaDerrotada[1].innerText) - valoresJogadores[0];            
             
         }, 2000)
 
         setTimeout(() =>{
-            cartas_meio.children[0].classList.remove("ataque_carta_esquerda");
-            cartas_meio.children[1].classList.remove("ataque_carta_direita");
-            cartas_meio.children[0].classList.remove("dano_carta_esquerda");
-            cartas_meio.children[1].classList.remove("dano_carta_direita");
+            cartasMeio.children[0].classList.remove("ataque_carta_esquerda");
+            cartasMeio.children[1].classList.remove("ataque_carta_direita");
+            cartasMeio.children[0].classList.remove("dano_carta_esquerda");
+            cartasMeio.children[1].classList.remove("dano_carta_direita");
 
             if (morto[0] && morto[1]) {
-                CapturarPokemon(cartas_meio.children[1].children[0].children[0].innerText)
-                cartas_meio.children[0].classList.add("morte");
-                cartas_meio.children[1].classList.add("morte");
+                CapturarPokemon(cartasMeio.children[1].children[0].children[0].innerText)
+                cartasMeio.children[0].classList.add("morte");
+                cartasMeio.children[1].classList.add("morte");
                 setTimeout(() =>{
-                    cartas_meio.children[0].remove();
-                    cartas_meio.children[0].remove(); 
+                    cartasMeio.children[0].remove();
+                    cartasMeio.children[0].remove(); 
                 }, 1000)
                 vitorias[0]++;
                 vitorias[1]++;
@@ -302,15 +224,15 @@ function batalha(){
 
             else if(morto[0]){
                 setTimeout(() =>{
-                    cartas_meio.children[0].remove(); 
+                    cartasMeio.children[0].remove(); 
                 }, 1000)
                 vitorias[1]++;
             }
 
             else if(morto[1]){
-                CapturarPokemon(cartas_meio.children[1].children[0].children[0].innerText)
+                CapturarPokemon(cartasMeio.children[1].children[0].children[0].innerText)
                 setTimeout(() =>{
-                    cartas_meio.children[1].remove(); 
+                    cartasMeio.children[1].remove(); 
                 }, 1000)
                 vitorias[0]++;
             }
@@ -331,38 +253,35 @@ function batalha(){
 
         else{
             return "empate, ambos os pokemon tomaram dano."
-        }
-
-        
-            
+        }     
     }
 
     else if(vencedor === 1){
         let morto; 
-        let cartaSelecionado = cartas_meio.children[1].children[0].children[1]
-        let hp_carta_dano = cartaSelecionado.querySelector('.ValoVidaPokemon')     
+        let cartaSelecionado = cartasMeio.children[1].children[0].children[1]
+        let vidaCartaDerrotada = cartaSelecionado.querySelector('.ValoVidaPokemon')     
 
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartas_meio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
-        TocarSomPokemon(cartas_meio.children[0].children[0].children[0].innerText);
-        cartas_meio.children[0].classList.add("ataque_carta_esquerda");
+        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSomPokemon(cartasMeio.children[0].children[0].children[0].innerText);
+        cartasMeio.children[0].classList.add("ataque_carta_esquerda");
         
-        morto = VerificarEstarMorto(Number(hp_carta_dano.innerText) - valoresJogadores[0])
+        morto = VerificarEstarMorto(Number(vidaCartaDerrotada.innerText) - valoresJogadores[0])
 
         setTimeout(() =>{
-            hp_carta_dano.innerText = Number(hp_carta_dano.innerText) - valoresJogadores[0]
-            cartas_meio.children[1].classList.add("dano_carta_direita");
+            vidaCartaDerrotada.innerText = Number(vidaCartaDerrotada.innerText) - valoresJogadores[0]
+            cartasMeio.children[1].classList.add("dano_carta_direita");
             TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
         }, 1000)
 
         setTimeout(() =>{
-            cartas_meio.children[0].classList.remove("ataque_carta_esquerda");
-            cartas_meio.children[1].classList.remove("dano_carta_direita");
+            cartasMeio.children[0].classList.remove("ataque_carta_esquerda");
+            cartasMeio.children[1].classList.remove("dano_carta_direita");
 
-            if(VerificarEstarMorto(Number(hp_carta_dano.innerText), cartaSelecionado)){
-                cartas_meio.children[1].classList.add("morte");
-                CapturarPokemon(cartas_meio.children[1].children[0].children[0].innerText)
+            if(VerificarEstarMorto(Number(vidaCartaDerrotada.innerText), cartaSelecionado)){
+                cartasMeio.children[1].classList.add("morte");
+                CapturarPokemon(cartasMeio.children[1].children[0].children[0].innerText)
                 setTimeout(() =>{
-                    cartas_meio.children[1].remove(); 
+                    cartasMeio.children[1].remove(); 
                 }, 1000)
             }
     
@@ -381,29 +300,29 @@ function batalha(){
 
     else if(vencedor === 2){
         let morto; 
-        let cartaSelecionado = cartas_meio.children[0].children[0].children[1]
-        let hp_carta_dano = cartaSelecionado.querySelector('.ValoVidaPokemon')
+        let cartaSelecionado = cartasMeio.children[0].children[0].children[1]
+        let vidaCartaDerrotada = cartaSelecionado.querySelector('.ValoVidaPokemon')
 
         TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartas_CaixaPersonagemMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
-        TocarSomPokemon(cartas_meio.children[1].children[0].children[0].innerText);
-        cartas_meio.children[1].classList.add("ataque_carta_direita");
+        TocarSomPokemon(cartasMeio.children[1].children[0].children[0].innerText);
+        cartasMeio.children[1].classList.add("ataque_carta_direita");
 
-        morto = VerificarEstarMorto(Number(hp_carta_dano.innerText) - valoresJogadores[1])
+        morto = VerificarEstarMorto(Number(vidaCartaDerrotada.innerText) - valoresJogadores[1])
 
         setTimeout(() =>{
-            cartas_meio.children[0].classList.add("dano_carta_esquerda");
-            hp_carta_dano.innerText = Number(hp_carta_dano.innerText) - valoresJogadores[1]
+            cartasMeio.children[0].classList.add("dano_carta_esquerda");
+            vidaCartaDerrotada.innerText = Number(vidaCartaDerrotada.innerText) - valoresJogadores[1]
             TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
         }, 1000)
         
         setTimeout(() =>{
-            cartas_meio.children[1].classList.remove("ataque_carta_direita");
-            cartas_meio.children[0].classList.remove("dano_carta_esquerda");
+            cartasMeio.children[1].classList.remove("ataque_carta_direita");
+            cartasMeio.children[0].classList.remove("dano_carta_esquerda");
             
             if(morto){
-                cartas_meio.children[0].classList.add("morte");
+                cartasMeio.children[0].classList.add("morte");
                 setTimeout(() =>{
-                    cartas_meio.children[0].remove(); 
+                    cartasMeio.children[0].remove(); 
                 }, 1000)
             }   
         }, 2000)
@@ -428,7 +347,7 @@ carta.forEach(cartaElement => {
             if (cartaElement.parentElement.id !== "cartaAtivos") {
                 let jaTemElementoDoMesmoPai = false;
 
-                Array.from(cartas_meio.children).forEach(child => {
+                Array.from(cartasMeio.children).forEach(child => {
                     if (pai_original.get(child) === cartaElement.parentElement) {
                         jaTemElementoDoMesmoPai = true;
                     }
@@ -440,7 +359,7 @@ carta.forEach(cartaElement => {
                         setTimeout(() =>{
                             cartaElement.classList.remove("escolhido_sumindo");
                             cartaElement.classList.add("escolhido_aparecendo");
-                            cartas_meio.prepend(cartaElement);
+                            cartasMeio.prepend(cartaElement);
                             
                         }, 500)
 
@@ -448,14 +367,12 @@ carta.forEach(cartaElement => {
                             
                             cartaElement.classList.remove("escolhido_aparecendo");
                         }, 1000)
-                        
-                        
                     } else {
                         cartaElement.classList.add("escolhido_sumindo");
                         setTimeout(() =>{
                             cartaElement.classList.remove("escolhido_sumindo");
                             cartaElement.classList.add("escolhido_aparecendo");
-                            cartas_meio.appendChild(cartaElement);
+                            cartasMeio.appendChild(cartaElement);
                             
                         }, 500)
 
@@ -511,7 +428,7 @@ function EscreverTextoAosPoucos(textarea, texto, tempo) {
 //Função de adicionar o pokemon para o jogador
 function CapturarPokemon(id_pokemon) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/php_Batalha.php", true);
+    xhr.open("POST", "../php/CapturarPokemon.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("id_pokemon=" + encodeURIComponent(parseInt(id_pokemon)));
 }

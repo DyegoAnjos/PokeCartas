@@ -13,18 +13,18 @@ async function fetchPokemon(pokemonId, carta) {
 
 function inserirInfosPokemon(pokemon, carta) {
     const cartaIdPokemon = carta.querySelector('.cartaIdPokemon');
-    const cartaImagePokemon = carta.querySelector('.carta_image_pokemon');
-    const cartaNamePokemon = carta.querySelector('.cartaNomePokemon');
-    const boxHpPokemon = carta.querySelector('.caixaVidaPokemon');
-    const cartaBoxTypePokemon = carta.querySelector('.cartaCaixaTipoPokemon');
-    const cartaBoxStatusPokemon = carta.querySelector('.caixaAtributosPokemon');
+    const cartaImagePokemon = carta.querySelector('.cartaImagePokemon');
+    const cartaNomePokemon = carta.querySelector('.cartaNomePokemon');
+    const cartaCaixaVidaPokemon = carta.querySelector('.caixaVidaPokemon');
+    const cartaCaixaTipoPokemon = carta.querySelector('.cartaCaixaTipoPokemon');
+    const cartaCaixaAtributosPokemon = carta.querySelector('.caixaAtributosPokemon');
 
     carta.style.backgroundColor = tiposPokemon.get(pokemon.types[0].type.name)?.cor;
 
     try {
         carta.style.borderColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
-        boxHpPokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
-        cartaNamePokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
+        cartaCaixaVidaPokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
+        cartaNomePokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
         cartaIdPokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
     } catch (error) {
 
@@ -32,35 +32,35 @@ function inserirInfosPokemon(pokemon, carta) {
 
     cartaIdPokemon.innerText = pokemon.id;
 
-    const cartaHpValue = boxHpPokemon.querySelector('.ValoVidaPokemon');
-    cartaHpValue.innerText = Normalizar(pokemon.stats[0].base_stat, 20, 150);
+    const cartaVidaValor = cartaCaixaVidaPokemon.querySelector('.ValoVidaPokemon');
+    cartaVidaValor.innerText = Normalizar(pokemon.stats[0].base_stat, 20, 150);
 
     cartaImagePokemon.setAttribute("src", pokemon.sprites.other['official-artwork'].front_default);
 
-    cartaNamePokemon.innerText = pokemon.name.toUpperCase();
+    cartaNomePokemon.innerText = pokemon.name.toUpperCase();
 
     if (pokemon.stats[1].base_stat > pokemon.stats[3].base_stat) {
-        cartaBoxStatusPokemon.children[0].innerText = `ATK: ${Normalizar(pokemon.stats[1].base_stat, 10, 150)}`;
+        cartaCaixaAtributosPokemon.children[0].innerText = `ATK: ${Normalizar(pokemon.stats[1].base_stat, 10, 150)}`;
     } else {
-        cartaBoxStatusPokemon.children[0].innerText = `ATK: ${Normalizar(pokemon.stats[3].base_stat, 10, 150)}`;
+        cartaCaixaAtributosPokemon.children[0].innerText = `ATK: ${Normalizar(pokemon.stats[3].base_stat, 10, 150)}`;
     }
 
     if (pokemon.stats[2].base_stat > pokemon.stats[4].base_stat) {
-        cartaBoxStatusPokemon.children[1].innerText = `DEF: ${Normalizar(pokemon.stats[2].base_stat, 10, 150)}`;
+        cartaCaixaAtributosPokemon.children[1].innerText = `DEF: ${Normalizar(pokemon.stats[2].base_stat, 10, 150)}`;
     } else {
-        cartaBoxStatusPokemon.children[1].innerText = `DEF: ${Normalizar(pokemon.stats[4].base_stat, 10, 150)}`;
+        cartaCaixaAtributosPokemon.children[1].innerText = `DEF: ${Normalizar(pokemon.stats[4].base_stat, 10, 150)}`;
     }
 
-    cartaBoxStatusPokemon.children[2].innerText = `SPEED: ${Normalizar(pokemon.stats[5].base_stat, 10, 150)}`;
+    cartaCaixaAtributosPokemon.children[2].innerText = `SPEED: ${Normalizar(pokemon.stats[5].base_stat, 10, 150)}`;
 
     for (let i = 0; i < 2; i++) {
-        cartaBoxTypePokemon.children[i].style.display = "none";
+        cartaCaixaTipoPokemon.children[i].style.display = "none";
     }
 
     for (let i = 0; i < pokemon.types.length; i++) {
-        cartaBoxTypePokemon.children[i].style.display = "block";
-        cartaBoxTypePokemon.children[i].style.backgroundColor = tiposPokemon.get(pokemon.types[i].type.name)?.cor;
-        cartaBoxTypePokemon.children[i].innerText = pokemon.types[i].type.name.toUpperCase();
+        cartaCaixaTipoPokemon.children[i].style.display = "block";
+        cartaCaixaTipoPokemon.children[i].style.backgroundColor = tiposPokemon.get(pokemon.types[i].type.name)?.cor;
+        cartaCaixaTipoPokemon.children[i].innerText = pokemon.types[i].type.name.toUpperCase();
     }
 }
 

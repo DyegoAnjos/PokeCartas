@@ -12,7 +12,7 @@
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [x] SFX
-- [ ] Ajuste e aplicação de normas no código 
+- [x] Ajuste e aplicação de normas no código 
 - [ ] Elementos gráficos de captura
 - [ ] Tela de carregamento
 - [ ] Implementação de funções de pesquisa no álbum

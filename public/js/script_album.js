@@ -3,7 +3,7 @@ const totalCartas = document.querySelector('#totalCartas');
 const botaoVoltar = document.querySelector("#botaoVoltar");
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('../../app/php_Album.php')
+    fetch('../../app/BuscarCartasAlbum.php')
     .then(response => {
         if (!response.ok) {
             throw new Error('Erro na requisição');
