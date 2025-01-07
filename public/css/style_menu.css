@@ -1,8 +1,16 @@
+
+
 body{
+    height: 100%;
     background-image: url(../imgs/background.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 header{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,7 +19,8 @@ header{
 }
 
 main{
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -47,7 +56,7 @@ header button{
 }
 
 main button{
-    height: 50%;
+    height: 70%;
     width: 25%;
     min-height: 200px;
     min-width: 200px;
@@ -66,11 +75,7 @@ nav{
 
 @media  (max-width: 900px) {
     body{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: space-between;
-        height: 100vh;
     }
 
     header{
@@ -78,16 +83,13 @@ nav{
         gap: 2rem;
     }
 
-    header button{
-
-        border-radius: 10%;
+    nav{
+        flex-direction: row;
     }
 
     main{
-        height: 70vh;
-        flex-direction: column;
-        margin-bottom: 25%;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: space-around;
     }
 
     main button{
@@ -96,10 +98,29 @@ nav{
     }
 }
 
-@media  ((max-width: 850px) AND (max-height: 700px)) {
-    main button{
+@media (max-width: 600px){
+    audio{
+        width: 100%;
+    }
+
+    nav{
+        flex-direction: column;
+    }
+
+    header button{
+        font-size: 1.5rem;
         min-width: 150px;
-        min-height: 150px;
+    }
+
+    main{
+        flex-direction: column;
+        padding: 2rem;
+    }
+
+    main button{
+        min-height: 120px;
+        min-width: 200px;
         font-size: 2rem;
+        border-radius: 3rem;
     }
 }

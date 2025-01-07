@@ -186,8 +186,8 @@ function batalha(){
         morto[0] = VerificarEstarMorto(Number(vidaCartaDerrotada[0].innerText) - valoresJogadores[1])
         morto[1] = VerificarEstarMorto(Number(vidaCartaDerrotada[1].innerText) - valoresJogadores[0])
 
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSom("../../public/audio/Audio_Atacks/" + tiposPokemon.get((cartasMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, .2)
+        TocarSom("../../public/audio/Audio_Atacks/" + tiposPokemon.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, .2)
         TocarSomPokemon(cartasMeio.children[0].children[0].children[0].innerText);
         TocarSomPokemon(cartasMeio.children[1].children[0].children[0].innerText);
 
@@ -197,8 +197,8 @@ function batalha(){
         setTimeout(() =>{
             cartasMeio.children[0].classList.add("dano_carta_esquerda");
             cartasMeio.children[1].classList.add("dano_carta_direita");
-            TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
-            TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
+            TocarSom("../../public/audio/Extra_SFX/damageSound.wav", 1);
+            TocarSom("../../public/audio/Extra_SFX/damageSound.wav", 1);
             vidaCartaDerrotada[0].innerText = Number(vidaCartaDerrotada[0].innerText) - valoresJogadores[1];
             vidaCartaDerrotada[1].innerText = Number(vidaCartaDerrotada[1].innerText) - valoresJogadores[0];            
             
@@ -261,7 +261,7 @@ function batalha(){
         let cartaSelecionado = cartasMeio.children[1].children[0].children[1]
         let vidaCartaDerrotada = cartaSelecionado.querySelector('.ValoVidaPokemon')     
 
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSom("../../public/audio/Audio_Atacks/" + tiposPokemon.get((cartasMeio.children[0].children[3].children[0].innerHTML).toLowerCase())?.som, .2)
         TocarSomPokemon(cartasMeio.children[0].children[0].children[0].innerText);
         cartasMeio.children[0].classList.add("ataque_carta_esquerda");
         
@@ -270,7 +270,7 @@ function batalha(){
         setTimeout(() =>{
             vidaCartaDerrotada.innerText = Number(vidaCartaDerrotada.innerText) - valoresJogadores[0]
             cartasMeio.children[1].classList.add("dano_carta_direita");
-            TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
+            TocarSom("../../public/audio/Extra_SFX/damageSound.wav", 1);
         }, 1000)
 
         setTimeout(() =>{
@@ -303,7 +303,7 @@ function batalha(){
         let cartaSelecionado = cartasMeio.children[0].children[0].children[1]
         let vidaCartaDerrotada = cartaSelecionado.querySelector('.ValoVidaPokemon')
 
-        TocarSom("../audio/Audio_Atacks/" + typesMap.get((cartas_CaixaPersonagemMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, 1)
+        TocarSom("../../public/audio/Audio_Atacks/" + tiposPokemon.get((cartasMeio.children[1].children[3].children[0].innerHTML).toLowerCase())?.som, .2)
         TocarSomPokemon(cartasMeio.children[1].children[0].children[0].innerText);
         cartasMeio.children[1].classList.add("ataque_carta_direita");
 
@@ -312,7 +312,7 @@ function batalha(){
         setTimeout(() =>{
             cartasMeio.children[0].classList.add("dano_carta_esquerda");
             vidaCartaDerrotada.innerText = Number(vidaCartaDerrotada.innerText) - valoresJogadores[1]
-            TocarSom("../audio/Extra_SFX/damageSound.wav", 1);
+            TocarSom("../../public/audio/Extra_SFX/damageSound.wav", 1);
         }, 1000)
         
         setTimeout(() =>{

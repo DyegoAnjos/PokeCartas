@@ -2,20 +2,33 @@ const formularioCadastro = document.querySelector("form")
 
 const campoNome = document.querySelector("#usuarioNome")
 const campoEmail = document.querySelector("#usuarioEmail")
-const campoSenha = document.querySelector("#usuarioSenha")
-const botaoVisualizar = document.querySelector(".botaoVisualizar i")
+const campoSenha = document.querySelectorAll(".usuarioSenha")
+const botaoVisualizar = document.querySelectorAll(".botaoVisualizar i")
 
 
-botaoVisualizar.addEventListener('click', () => {
-    if(botaoVisualizar.className == "fa-solid fa-eye"){
-        botaoVisualizar.className = "fa-solid fa-eye-slash"
-        campoSenha.setAttribute("type","password")
+botaoVisualizar[0].addEventListener('click', () => {
+    if(botaoVisualizar[0].className == "fa-solid fa-eye"){
+        botaoVisualizar[0].className = "fa-solid fa-eye-slash"
+        campoSenha[0].setAttribute("type","password")
     }
         
 
     else{
-        botaoVisualizar.className = "fa-solid fa-eye"
-        campoSenha.setAttribute("type","text")
+        botaoVisualizar[0].className = "fa-solid fa-eye"
+        campoSenha[0].setAttribute("type","text")
+    }
+})
+
+botaoVisualizar[1].addEventListener('click', () => {
+    if(botaoVisualizar[1].className == "fa-solid fa-eye"){
+        botaoVisualizar[1].className = "fa-solid fa-eye-slash"
+        campoSenha[1].setAttribute("type","password")
+    }
+        
+
+    else{
+        botaoVisualizar[1].className = "fa-solid fa-eye"
+        campoSenha[1].setAttribute("type","text")
     }
 })
 
@@ -24,7 +37,7 @@ formularioCadastro.addEventListener("submit", (e)=>{
     if(ValidarRegex() == true){
         const dadosParaEnviar = {
             usuarioNome: campoNome.value.trim(),
-            usuarioSenha: campoSenha.value.trim(),
+            usuarioSenha: campoSenha[0].value.trim(),
             usuarioEmail: campoEmail.value.trim(),
         }
 
@@ -71,8 +84,13 @@ function ValidarRegex(){
     }
     
     regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
-    if (regex.test(campoSenha.value.trim()) === false){
+    if (regex.test(campoSenha[0].value.trim()) === false){
         popup_alert("Senha inválida")
+        return false;
+    }
+
+    else if(campoSenha[1].value.trim() != campoSenha[0].value.trim()){
+        popup_alert("As senhas não são iguais")
         return false;
     }
 

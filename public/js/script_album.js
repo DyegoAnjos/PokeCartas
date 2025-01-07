@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             cartaElemento.classList.add('carta');
 
             cartaElemento.innerHTML = `
-            <div class="carta">
                 <div class="cartaDivCabecalho">
                     <h3 class="cartaIdPokemon">${carta.id_carta}</h3>
                     <div class="caixaVidaPokemon">
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     SPEED: ???
                 </button>
                 </div>
-            </div>
             `;
             caixaPokemonAlbum.appendChild(cartaElemento);
         });

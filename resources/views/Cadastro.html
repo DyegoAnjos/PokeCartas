@@ -15,11 +15,12 @@
             Seu navegador não suporta o elemento de áudio.
         </audio> 
     </header>
-    <div class="popup">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis vehicula ligula, eget cursus neque. Nam metus dolor, finibus nec vestibulum sit amet, fringilla vitae massa. In rutrum dapibus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut eget lacinia massa. Aliquam scelerisque elit nec ligula porttitor, ut pretium velit auctor. Aenean nec velit quis nunc feugiat rutrum.</p>
-        <i class="fa-solid fa-x"></i>
-    </div>
+    
     <main>
+        <div class="popup">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis vehicula ligula, eget cursus neque. Nam metus dolor, finibus nec vestibulum sit amet, fringilla vitae massa. In rutrum dapibus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut eget lacinia massa. Aliquam scelerisque elit nec ligula porttitor, ut pretium velit auctor. Aenean nec velit quis nunc feugiat rutrum.</p>
+            <i class="fa-solid fa-x"></i>
+        </div>
         <form action="../../app/php_Cadastro.php" method="post">
             <h1>Cadastro</h1>
             <div id="divCorpoFormulario">
@@ -34,7 +35,16 @@
                 <div class="divCampos" id="divSenha">
                     <p>Senha</p>
                     <div id="divCampoSenha">
-                        <input type="password" name="usuarioSenha" id="usuarioSenha" placeholder="Ex: H4d3s@4nj05" title="A senha deve ter 8 caracteres, no mínimo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 símbolo">
+                        <input type="password" name="usuarioSenha" class="usuarioSenha" placeholder="Ex: H4d3s@4nj05" title="A senha deve ter 8 caracteres, no mínimo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 símbolo">
+                        <div class="botaoVisualizar">
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div> 
+                    </div>
+                </div>
+                <div class="divCampos" id="divSenha">
+                    <p>Confirmar senha</p>
+                    <div id="divCampoSenha">
+                        <input type="password" name="confirmarUsuarioSenha" class="usuarioSenha" placeholder="Ex: H4d3s@4nj05" title="A senha deve ter 8 caracteres, no mínimo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 símbolo">
                         <div class="botaoVisualizar">
                             <i class="fa-solid fa-eye-slash"></i>
                         </div> 
