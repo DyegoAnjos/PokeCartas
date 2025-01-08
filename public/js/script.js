@@ -1,13 +1,26 @@
-const div_elemento_popup = document.querySelector(".popup")
-const text_elemento_popup = document.querySelector(".popup p")
-const close_button = document.querySelector(".popup i")
+const divPopup = document.querySelector(".popup")
+const TextPopup = document.querySelector(".popup p")
+const botaoFechar = document.querySelector(".popup i")
+const audioMusica = document.querySelector("#audioMusica")
 
-close_button.addEventListener("click", () =>{
-    div_elemento_popup.style.display = "none"
+if(audioMusica !== null)
+    console.log("oii")
+
+document.addEventListener('visibilitychange', () => {
+    console.log("oi")
+    if (document.hidden) {
+        console.log("olá")
+        audioMusica.pause(); // Pausa o áudio quando a aba for ocultada
+    }
+});
+
+botaoFechar.addEventListener("click", () =>{
+    divPopup.style.display = "none"
 })
 
 
 function popup_alert(mensagem){
-    div_elemento_popup.style.display = "flex"
-    text_elemento_popup.textContent = mensagem
+    divPopup.style.display = "flex"
+    TextPopup.textContent = mensagem
 }
+

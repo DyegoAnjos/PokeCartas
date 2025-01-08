@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             caixaPokemonAlbum.appendChild(cartaElemento);
         });
-        const carta = document.querySelectorAll(".carta");
-            for(i=0;i < carta.length;i++){
-                fetchPokemon(data[i].id_carta,carta[i]);
+        const cartaAlbum = document.querySelectorAll(".carta");
+            for(i=0;i < cartaAlbum.length;i++){
+                fetchPokemon(data[i].id_carta,cartaAlbum[i]);
             }
         totalCartas.value = totalCartasContador;
     })

@@ -1,10 +1,14 @@
+body{
+    height: 100%;
+}
+
 header{
     position: absolute;
     font-size: 4rem;
 }
 
 main{
-    height: 100vh;
+    height: 100%;
 
     display: grid;
     grid-template-areas: "CaixaPersonagemLado1 CaixaPersonagemMeio CaixaPersonagemLado2";
@@ -30,38 +34,36 @@ main{
     order: 2;
 }
 
-#CaixaPersonagemLado1{
-    height: 100vh;
-    width: 600px;
+#CaixaPersonagemLado1, #CaixaPersonagemLado2{
+    height: 100%;
+    max-height: 100vh;
+    width: 100%;
     visibility: visible;
-    grid-area: CaixaPersonagemLado1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    
+    gap: 4rem;
+}
+
+#CaixaPersonagemLado1{
+    grid-area: CaixaPersonagemLado1;    
 }
 
 #CaixaPersonagemLado2{
-    height: 100vh;
-    width: 600px;
-    visibility: visible;
-    grid-area: CaixaPersonagemLado2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    grid-area: CaixaPersonagemLado2; 
 }
 
 #CaixaPersonagemMeio{
     width: 100%;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center ;
     gap: 1rem;
+    padding: 1rem;
     grid-area: CaixaPersonagemMeio;
 }
 
@@ -170,4 +172,8 @@ main{
     background-color: #9CEAEF;
     box-shadow: 0px 0px 13px 3px #1d6166;
     border-radius: 3rem;
+}
+
+@media (max-width: 2000px){
+
 }
