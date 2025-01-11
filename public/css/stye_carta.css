@@ -14,7 +14,7 @@
 .carta:hover{
     transition: .5s;
     width: 280px;
-    height: 430px;
+    height: 420px;
     box-shadow: 0 0 13px 6px #000000;
 }
 
@@ -253,6 +253,44 @@
     }
 }
 
+@keyframes ataque_carta_esquerda_celular{
+    0%{
+        transform: translateX(0) rotate(0deg);   
+    }
+
+    50%{
+        transform: translateX(0) rotate(-25deg);
+
+    }
+
+    75%{
+        transform: translateX(100px) rotate(75deg);  
+    }
+
+    100%{
+        transform: translateX(0) rotate(0deg);    
+    }
+}
+
+@keyframes ataque_carta_direita_celular{
+    0%{
+        transform: translateX(0) rotate(0deg);   
+    }
+
+    50%{
+        transform: translateX(0) rotate(25deg);
+
+    }
+
+    75%{
+        transform: translateX(-100px) rotate(-75deg);  
+    }
+
+    100%{
+        transform: translateX(0) rotate(0deg);    
+    }
+}
+
 @media (max-width: 2000px){
     .carta{
         border: 6px #b7b6b5 solid;
@@ -265,7 +303,7 @@
     .carta:hover{
         transition: .5s;
         width: 200px;
-        height: 320px;
+        height: 300px;
     }
     .cartaImagePokemon{
         margin-top: 1rem;
@@ -326,5 +364,21 @@
         transition: .5s;
         width: 240px;
         height: 360px;
+    }
+
+    .ataque_carta_esquerda{
+        animation: ataque_carta_esquerda_celular 1s ease-in-out alternate;
+    }
+    
+    .ataque_carta_direita{
+        animation: ataque_carta_direita_celular 1s ease-in-out alternate;
+    }
+    
+    .dano_carta_direita{
+        animation: tomar_dano_carta_direita 1s ease-in-out alternate;
+    }
+    
+    .dano_carta_esquerda{
+        animation: tomar_dano_carta_esquerda 1s ease-in-out alternate;
     }
 }

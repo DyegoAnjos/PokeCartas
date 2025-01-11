@@ -428,7 +428,7 @@ function EscreverTextoAosPoucos(textarea, texto, tempo) {
 //Função de adicionar o pokemon para o jogador
 function CapturarPokemon(id_pokemon) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/CapturarPokemon.php", true);
+    xhr.open("POST", "../../app/CapturarPokemon.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("id_pokemon=" + encodeURIComponent(parseInt(id_pokemon)));
 }
