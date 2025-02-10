@@ -7,9 +7,7 @@ if(audioMusica !== null)
     console.log("oii")
 
 document.addEventListener('visibilitychange', () => {
-    console.log("oi")
     if (document.hidden) {
-        console.log("olá")
         audioMusica.pause(); // Pausa o áudio quando a aba for ocultada
     }
 });
