@@ -16,5 +16,5 @@ botaoAterarSenha.addEventListener('click', () =>{
 })
 
 botaoDeslogar.addEventListener('click', () =>{
-    window.location.href = '../../resources/views/Login.html';
+    window.location.href = '../../resources/views/Index.html';
 })
