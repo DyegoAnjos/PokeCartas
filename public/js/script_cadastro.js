@@ -61,7 +61,7 @@ formularioCadastro.addEventListener("submit", (e)=>{
             }
 
             else {
-                window.location.href = '../../resources/views/Index.html';
+                window.location.href = '../../resources/views/Login.html';
             }
         })
         .catch((error) => {
