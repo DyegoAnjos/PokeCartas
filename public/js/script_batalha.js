@@ -3,7 +3,7 @@ const CaixaPersonagemLado1 = document.querySelector("#CaixaPersonagemLado1")
 const CaixaPersonagemLado2 = document.querySelector("#CaixaPersonagemLado2")
 
 const carta = document.querySelectorAll(".carta");
-
+const inputPontuacaoJogadores = document.querySelectorAll(".pontuacaoJogador");
 
 const sumario = document.querySelector("#textoResultado")
 const botaoProximaRodada = document.querySelector("#botaoProximaRodada")
@@ -16,14 +16,9 @@ const botaMenu = document.querySelector("#botaoMenu")
 const cartasMeio = document.querySelector("#cartaAtivos");
 const botaoVoltar = document.querySelector("#botaoVoltar");
 
-var pokemonCries = [];
-
 var vitorias = [0,0];
 
 const pai_original = new Map();
-
-
-
 
 const escolhaJogadores = [];
 const valoresJogadores = [];
@@ -220,6 +215,9 @@ function batalha(){
                 }, 1000)
                 vitorias[0]++;
                 vitorias[1]++;
+                inputPontuacaoJogadores[0].value = "Pontuação: " + vitorias[0];
+                inputPontuacaoJogadores[1].value = "Pontuação: " + vitorias[1];
+                
             }
 
             else if(morto[0]){
@@ -227,6 +225,7 @@ function batalha(){
                     cartasMeio.children[0].remove(); 
                 }, 1000)
                 vitorias[1]++;
+                inputPontuacaoJogadores[1].value = "Pontuação: " + vitorias[1];
             }
 
             else if(morto[1]){
@@ -235,6 +234,7 @@ function batalha(){
                     cartasMeio.children[1].remove(); 
                 }, 1000)
                 vitorias[0]++;
+                inputPontuacaoJogadores[0].value = "Pontuação: " + vitorias[0];
             }
     
         }, 3000)
@@ -290,6 +290,7 @@ function batalha(){
 
         if(morto){
             vitorias[0]++;
+            inputPontuacaoJogadores[0].value = "Pontuação: " + vitorias[0];
             return "O Jogador 1 escolheu a ação vitoriosa\nCausando dano no pokemon inimigo e o Capturando"
             
         }   
@@ -329,6 +330,8 @@ function batalha(){
         
         if(morto){
             vitorias[1]++;
+            console.log(inputPontuacaoJogadores[1])
+            inputPontuacaoJogadores[1].value = "Pontuação: " + vitorias[1];
             return "O Jogador 2 escolheu a ação vitoriosa\nCausando dano no pokemon inimigo e o derrotando"
             
         }   
@@ -338,7 +341,7 @@ function batalha(){
     }
 }
 
-//FUnção de escolher pokemon
+//Função de escolher pokemon
 carta.forEach(cartaElement => {
     pai_original.set(cartaElement, cartaElement.parentElement);
 

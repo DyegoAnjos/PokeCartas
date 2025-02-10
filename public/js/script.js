@@ -4,7 +4,6 @@ const botaoFechar = document.querySelector(".popup i")
 const audioMusica = document.querySelector("#audioMusica")
 
 if(audioMusica !== null)
-    console.log("oii")
 
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
