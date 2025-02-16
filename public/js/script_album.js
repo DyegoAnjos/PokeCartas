@@ -2,6 +2,7 @@ const caixaPokemonAlbum = document.querySelector('main');
 const totalCartas = document.querySelector('#totalCartas');
 const botaoVoltar = document.querySelector("#botaoVoltar");
 const botaoPesquisarPokemon = document.querySelector("#BotaoPesquisar");
+const botaoLimparPesquisa = document.querySelector("#BotaoLimparPesquisa");
 const InputPesquisaPokemon = document.querySelector("#InputPesquisaPokemon");
 
 
@@ -20,52 +21,59 @@ botaoPesquisarPokemon.addEventListener('click', function() {
                 console.log(pokemon.id);
                 dadosParaEnviar.idPokemon = pokemon.id;
                 console.log(dadosParaEnviar);
+
+                fetch('../../app/PesquisaPokemon.php' , {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(dadosParaEnviar).toString(),
+                })
+                
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Erro na requisição');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var totalCartasContador = 0;
+                    if (!Array.isArray(data)) {
+                        console.error('A resposta não é um array:', data);
+                        return;
+                    }
+                    if(data.length === 0) {
+                        caixaPokemonAlbum.innerHTML = "";
+                        popup_alert("Pokemon não encontrado");
+                        CarregarTodosPokemon();
+                    }
+                    else{
+                        caixaPokemonAlbum.innerHTML = "";
+                        data.forEach(carta => {
+                            totalCartasContador++;
+                            caixaPokemonAlbum.appendChild(criarCarta(carta.id_carta));
+                        });
+                        totalCartas.value = totalCartasContador;
+                    }
+                    
+                })
+                .catch(error => {
+                    console.error('Erro ao fazer a requisição:', error);
+                });
             }
             else {
-                console.log("Pokemon não encontrado");
+                    popup_alert("Pokemon não encontrado");
                 }
             }
         );
         
 
-    fetch('../../app/PesquisaPokemon.php' , {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(dadosParaEnviar).toString(),
-    })
     
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error('Erro na requisição');
-        }
-        return response.json();
-    })
-    .then(data => {
-        var totalCartasContador = 0;
-        if (!Array.isArray(data)) {
-            console.error('A resposta não é um array:', data);
-            return;
-        }
-        if(data.length === 0) {
-            caixaPokemonAlbum.innerHTML = "";
-            InputPesquisaPokemon.value = "Pokemon não encontrado";
-            CarregarTodosPokemon();
-        }
-        else{
-            caixaPokemonAlbum.innerHTML = "";
-            data.forEach(carta => {
-                totalCartasContador++;
-                caixaPokemonAlbum.appendChild(criarCarta(carta.id_carta));
-            });
-            totalCartas.value = totalCartasContador;
-        }
-        
-    })
-    .catch(error => {
-        console.error('Erro ao fazer a requisição:', error);
-    });
+})
+
+botaoLimparPesquisa.addEventListener('click', function() {
+    InputPesquisaPokemon.value = "";
+    CarregarTodosPokemon();
 })
 
 function CarregarTodosPokemon(){

@@ -144,8 +144,6 @@ main{
     gap: 1rem;
 }
 
-
-
 @media (max-width: 1000px){
     header{
         grid-template-areas: "Musica" "Voltar" "NovasAbas" "TotalCartas" "Pesquisa" "FiltroOrdenacao";
