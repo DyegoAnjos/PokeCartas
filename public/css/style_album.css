@@ -12,31 +12,121 @@ header{
     box-shadow: 0px 0px 13px 3px #1d6166;
     border-radius: 2rem;
     width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     padding: 2rem;
     font-size: 2rem;
     gap: 1rem;
+
+    display: grid;
+    grid-template-areas: 
+    "NovasAbas Musica Pesquisa"
+    "TotalCartas Voltar FiltroOrdenacao";  
+    align-items: center; 
+    justify-content: space-around;
+    justify-items: center;
 }
 
-#divBotoes{
+header button{
+    height: 5%; 
+    width: 10%; 
+    min-height: 50px; 
+    min-width: 200px;
+    font-size: 2rem;
+    
+    background-color: #9CEAEF;
+    box-shadow: 0px 0px 13px 3px #1d6166;
+    border-radius: 3rem;
+    cursor: pointer;
+}
 
+header button:hover{
+    background-color: #1d6166;
+    color: #9CEAEF;
+    transition: .2s;
+}
+
+#CaixaAbas{
+    grid-area: NovasAbas;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#CaixaAbas button{
+    width: 45%;
+    min-width: 0;
+    border-radius: 1rem;
+}
+
+#CaixaTotalCartas{
+    grid-area: TotalCartas;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#divBotoes input{
+#CaixaTotalCartas input{
     background-color: #9CEAEF;
     box-shadow: 0px 0px 13px 3px #1d6166;
-    width: 50%;
+    width: 100%;
     height: 3rem;
     text-align: center;
     height: 2rem;
     border-radius: .5rem;
     padding: .2rem;
     font-size: 2rem;
+}
+
+
+audio{
+    grid-area: Musica;
+}
+
+
+#botaoVoltar{
+    grid-area: Voltar;
+}
+
+#CaixaPesquisar{
+    grid-area: Pesquisa;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+} 
+
+#BotaoPesquisar{
+    cursor: pointer;
+}
+
+
+#CaixaPesquisar input{
+    background-color: #9CEAEF;
+    box-shadow: 0px 0px 13px 3px #1d6166;
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    height: 2rem;
+    border-radius: .5rem;
+    padding: .2rem;
+    font-size: 1rem;
+}
+
+#BotaoFiltrarOrdenar
+{
+    grid-area: FiltroOrdenacao;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    padding: .5rem;
 }
 
 main{
@@ -54,21 +144,12 @@ main{
     gap: 1rem;
 }
 
-header button{
-    height: 5%;
-    width: 10%;
-    min-height: 50px;
-    min-width: 200px;
-    font-size: 2rem;
-    
-    background-color: #9CEAEF;
-    box-shadow: 0px 0px 13px 3px #1d6166;
-    border-radius: 3rem;
-}
+
 
 @media (max-width: 1000px){
     header{
-        flex-direction: column;
+        grid-template-areas: "Musica" "Voltar" "NovasAbas" "TotalCartas" "Pesquisa" "FiltroOrdenacao";
+        justify-content: center;
     }
 
     main{

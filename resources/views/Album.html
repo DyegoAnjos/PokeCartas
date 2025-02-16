@@ -15,14 +15,23 @@
         <i class="fa-solid fa-x"></i>
     </div>
     <header>
+        <div id="CaixaAbas">
+            <button type="button" id="Deck">Deck</button>
+            <button type="button" id="Deck">Coleções</button>
+        </div>
+        <div id="CaixaTotalCartas">
+            Total de Cartar: <input type="number" name="totalCartas" value="0" readonly id="totalCartas">
+        </div>
         <audio id="audioMusica" controls autoplay loop onloadedmetadata="this.volume=0.1;">
             <source src="../../public/audio/Musics/Lake (From _Pokemon Diamond _ Pokemon Pearl_)(MP3_160K).mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio> 
-        <div id="divBotoes">
-            Total de Cartar: <input type="number" name="totalCartas" value="0" readonly id="totalCartas">
-        </div>
         <button type="button" id="botaoVoltar">Voltar</button>
+        <div id="CaixaPesquisar">
+            <div id="BotaoPesquisar"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <input type="text" name="InputPesquisaPokemon" id="InputPesquisaPokemon" placeholder="Digite o nome ou id do pokemon">
+        </div>
+        <button type="button" id="BotaoFiltrarOrdenar">Filtragem e Ordenação</button>
     </header>
     <main>
         

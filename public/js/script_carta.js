@@ -1,4 +1,20 @@
-async function fetchPokemon(pokemonId, carta) {
+async function fetchPokemon(pokemonId) { 
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;  
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Pokémon não encontrado');
+        } 
+        const pokemon = await response.json(); 
+        return pokemon;
+    } 
+    catch (error) { 
+        console.error(error);
+        throw error;
+    } 
+}
+
+async function fetchPokemonParaCarta(pokemonId, carta) {
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
     try {
         const response = await fetch(url);
@@ -9,6 +25,38 @@ async function fetchPokemon(pokemonId, carta) {
         inserirInfosPokemon(pokemon, carta);
     } catch (error) {
     }
+}
+
+function criarCarta(codPokemon) {
+    const cartaCriada = document.createElement('div');
+    cartaCriada.classList.add('carta');
+    cartaCriada.innerHTML = `
+        <div class="cartaDivCabecalho">
+            <h3 class="cartaIdPokemon">${codPokemon}</h3>
+            <div class="caixaVidaPokemon">
+                <h3 class="ValoVidaPokemon">???</h3>
+                <h3 class="textoVidaPokemon">HP</h3>
+            </div>
+        </div>
+        <img src="../../public/favicon.png"  class="cartaImagePokemon">
+        <h2 class="cartaNomePokemon">???</h2>
+        <div class="cartaCaixaTipoPokemon">
+            <p class="tipo1Pokemon">???</p>
+            <p class="tipo2Pokemon">???</p>
+        </div>
+        <div class="caixaAtributosPokemon">
+            <button type="button" class="ataquePokemon">
+                ATK: ???
+            </button>
+            <button type="button" class="defesaPokemon">
+                DEF: ???
+            </button>
+            <button type="button" class="velocidadePokemon">
+                SPEED: ???
+            </button>
+        </div>`;
+        fetchPokemonParaCarta(codPokemon, cartaCriada);
+        return cartaCriada;
 }
 
 function inserirInfosPokemon(pokemon, carta) {

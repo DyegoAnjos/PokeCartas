@@ -24,41 +24,8 @@ const escolhaJogadores = [];
 const valoresJogadores = [];
 var rodada = 1;
 
-botaoJogarNovamente.addEventListener('click', () =>{
-    window.location.href =  '../../resourcs/views/Batalha.html';
-})
 
-botaMenu.addEventListener('click', () =>{
-    window.location.href =  '../../resourcs/views/Menu.html';
-})
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('../../app/BuscarCartaBatalha.php')
-    .then(response =>{
-        if (!response.ok) {
-            throw new Error('Erro na requisição');
-        }
-        return response.json();
-    })
-    .then(data =>{
-        if(!Array.isArray(data)){
-            console.error('A resposta não é um array:', data);
-            return;
-        }
-        var indice = 0;
-        data.forEach(cartaBD =>{
-            fetchPokemon(cartaBD.id_carta, carta[indice])
-            indice++;
-        })
-    })
-    .catch(error => {
-        console.error('Erro ao fazer a requisição:', error);
-    });
-    for(i=4;i < carta.length;i++){
-        fetchPokemon(PegarNumeroAleatorio(1, 1025), carta[i]);
-    }
-    jogo()
-});
+/*Funções de Jogo*/
 
 function jogo(){
     if(cartasMeio.children.length == 2 && rodada > 4)
@@ -69,6 +36,28 @@ function jogo(){
         
     switch(rodada){
         case 1:{
+            if(vitorias[0] == 4 && vitorias[1] == 4){
+                telaFinal.style.display = "flex";
+                telaFinal.children[0].children[0].innerText = "Parabéns para os dois";
+                telaFinal.children[0].children[1].innerText = "Deu empate!";
+            }
+    
+            else if(vitorias[1] == 4){
+                telaFinal.style.display = "flex";
+                telaFinal.children[0].children[0].innerText = "Parabéns Jogador 2";
+                telaFinal.children[0].children[1].innerText = "Jogador 2 venceu!";
+            }
+    
+            else if (vitorias[0] == 4){
+                telaFinal.style.display = "flex";
+                telaFinal.children[0].children[0].innerText = "Parabéns Jogador 1";
+                telaFinal.children[0].children[1].innerText = "Você venceu!";
+            }
+                    
+    
+            telaFinal.children[0].children[2].innerText = `O Jogador 1 capturou ${vitorias[0]} Pokemon`;
+            
+
             //Fase de escolha de pokemon            
             botaoProximaRodada.disabled = true;
             EscreverTextoAosPoucos(sumario, "Jogadores\nEscolham seus Pokemon!\nDepois clique em finalizar",20);
@@ -143,28 +132,7 @@ function jogo(){
                 botaoProximaRodada.disabled = false;
             }, 3000)
             
-            setTimeout(() =>{
-                if((CaixaPersonagemLado1.children.length == 0 && CaixaPersonagemLado1.children.length == 0) && vitorias[0] == 4 && vitorias[1] == 4){
-                    telaFinal.style.display = "flex";
-                    telaFinal.children[0].children[0].innerText = "Parabéns para os dois";
-                    telaFinal.children[0].children[1].innerText = "Deu empate!";
-                }
-    
-                else if(CaixaPersonagemLado1.children.length == 0 && vitorias[1] == 4){
-                    telaFinal.style.display = "flex";
-                    telaFinal.children[0].children[0].innerText = "Parabéns Jogador 2";
-                    telaFinal.children[0].children[1].innerText = "Jogador 2 venceu!";
-                }
-    
-                else if (CaixaPersonagemLado2.children.length == 0 && vitorias[0] == 4){
-                    telaFinal.style.display = "flex";
-                    telaFinal.children[0].children[0].innerText = "Parabéns Jogador 1";
-                    telaFinal.children[0].children[1].innerText = "Você venceu!";
-                }
-                    
-    
-                telaFinal.children[0].children[2].innerText = `O Jogador 1 capturou ${vitorias[0]} Pokemon`;
-            }, 3000)
+            
             
         }break;
     }
@@ -341,10 +309,13 @@ function batalha(){
     }
 }
 
+
+
+/*Funções de Utilidades*/
+
 //Função de escolher pokemon
 carta.forEach(cartaElement => {
     pai_original.set(cartaElement, cartaElement.parentElement);
-
     cartaElement.addEventListener('click', () => {
         if (rodada == 1) {
             if (cartaElement.parentElement.id !== "cartaAtivos") {
@@ -385,7 +356,8 @@ carta.forEach(cartaElement => {
                     }
                     TocarSomPokemon(cartaElement.children[0].children[0].innerText);
                 }
-            } else {
+            }
+            else {
                 const paiOriginal = pai_original.get(cartaElement);
                 cartaElement.classList.add("escolhido_sumindo");
                 setTimeout(() =>{
@@ -404,14 +376,35 @@ carta.forEach(cartaElement => {
     });
 });
 
-function VerificarEstarMorto(hpcarta){
-    if(hpcarta <= 0){
-        return 1
-    }
+//Função de adicionar o pokemon para o jogador
+function CapturarPokemon(id_pokemon) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../../app/CapturarPokemon.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("id_pokemon=" + encodeURIComponent(parseInt(id_pokemon)));
+}
 
+//Função que retorna lógica de pedra, papel e tesoura
+function PedraPapelTesoura(escolha1, escolha2){
+    if(escolha1 === escolha2)
+        return "empate"
+
+    else if((escolha1 === 1 && escolha2 === 0) || (escolha1 === 2 && escolha2 === 1) ||(escolha1 === 0 && escolha2 === 2))
+        return 1
+
+    else   
+        return 2
+}
+
+function VerificarEstarMorto(hpcarta){
+    if(hpcarta <= 0)
+        return 1
     else
         return 0
 }
+
+
+/*Funções de Efeito*/
 
 function EscreverTextoAosPoucos(textarea, texto, tempo) {
     let index = 0; 
@@ -426,14 +419,6 @@ function EscreverTextoAosPoucos(textarea, texto, tempo) {
   
     textarea.value = ""; 
     typeText(); 
-}
-
-//Função de adicionar o pokemon para o jogador
-function CapturarPokemon(id_pokemon) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../app/CapturarPokemon.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("id_pokemon=" + encodeURIComponent(parseInt(id_pokemon)));
 }
 
 //Tocar o som do pokemon
@@ -458,22 +443,50 @@ function TocarSom(caminho, volume){
     audio.play();
 }
 
+/*Funcionamento da Página*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('../../app/BuscarCartaBatalha.php')
+    .then(response =>{
+        if (!response.ok) {
+            throw new Error('Erro na requisição');
+        }
+        return response.json();
+    })
+    .then(data =>{
+        if(!Array.isArray(data)){
+            console.error('A resposta não é um array:', data);
+            return;
+        }
+        var indice = 0;
+        data.forEach(cartaBD =>{
+            fetchPokemonParaCarta(cartaBD.id_carta, carta[indice])
+            indice++;
+        })
+    })
+    .catch(error => {
+        console.error('Erro ao fazer a requisição:', error);
+    });
+    for(i=4;i < carta.length;i++){
+        // fetchPokemonParaCarta(PegarNumeroAleatorio(1, 1025), carta[i]); 
+         fetchPokemonParaCarta(1, carta[i]);
+    }
+    jogo()
+});
+
+
+botaoJogarNovamente.addEventListener('click', () =>{
+    window.location.href =  '../../resources/views/Batalha.html';
+})
+
+botaMenu.addEventListener('click', () =>{
+    window.location.href =  '../../resources/views/Menu.html';
+})
+
 botaoProximaRodada.addEventListener('click', () =>{  
     rodada++
     jogo();    
 })
-
-//Função que retorna lógica de pedra, papel e tesoura
-function PedraPapelTesoura(escolha1, escolha2){
-    if(escolha1 === escolha2)
-        return "empate"
-
-    else if((escolha1 === 1 && escolha2 === 0) || (escolha1 === 2 && escolha2 === 1) ||(escolha1 === 0 && escolha2 === 2))
-        return 1
-
-    else   
-        return 2
-}
 
 botaoVoltar.addEventListener('click', () =>{
     window.location.href = '../../resources/views/Menu.html'

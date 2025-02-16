@@ -4,7 +4,6 @@ const campoEmail = document.querySelector("#usuarioEmail");
 const campoSenha = document.querySelector("#usuarioSenha");
 const botaoVisualizar = document.querySelector(".botaoVisualizar i")
 
-
 //Função de visualizar a senha
 botaoVisualizar.addEventListener('click', () => {
     if(botaoVisualizar.className == "fa-solid fa-eye"){
@@ -63,14 +62,12 @@ function ValidarRegex(){
     var regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     if(regex.test(campoEmail.value.trim()) === false){
         popup_alert("E-mail inválido")
-
         return false;
     }
 
     regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     if (regex.test(campoSenha.value.trim()) === false){
         popup_alert("Senha inválida")
-
         return false;
     }
     return true;
