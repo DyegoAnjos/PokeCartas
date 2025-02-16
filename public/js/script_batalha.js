@@ -60,7 +60,7 @@ function jogo(){
 
             //Fase de escolha de pokemon            
             botaoProximaRodada.disabled = true;
-            EscreverTextoAosPoucos(sumario, "Jogadores\nEscolham seus Pokemon!\nDepois clique em finalizar",20);
+            EscreverTextoAosPoucos(sumario, "Jogadores\nEscolham seus Pokemon!\nDepois clique em próxima rodada",20);
             setTimeout(() =>{
                 botaoProximaRodada.disabled = false;
             }, 2000)
@@ -73,7 +73,7 @@ function jogo(){
             }
             else{
                 botaoProximaRodada.disabled = true;
-                EscreverTextoAosPoucos(sumario, "Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar",20);
+                EscreverTextoAosPoucos(sumario, "Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em próxima rodada",20);
                 cartasMeio.children[0].style.display = "flex";
                 cartasMeio.children[1].style.display = "none";
                 setTimeout(() =>{
@@ -86,7 +86,7 @@ function jogo(){
                         atributoEscolhido.addEventListener('click', () => {
                             valoresJogadores[0] = Number(atributoEscolhido.innerText.match(/\d+/g));
                             escolhaJogadores[0] = i;
-                            sumario.value= `Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${atributoEscolhido.innerText}`
+                            sumario.value= `Jogador 1\nEscolha a ação do seu Pokemon\nDepois clique em próxima rodada\n${atributoEscolhido.innerText}`
                             botaoProximaRodada.disabled = false;
                         });
                     }
@@ -98,7 +98,7 @@ function jogo(){
         case 3:{
             //Fase de escolha do jogador 2
             botaoProximaRodada.disabled = true;
-            EscreverTextoAosPoucos(sumario, "Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar",20);
+            EscreverTextoAosPoucos(sumario, "Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em próxima rodada",20);
             cartasMeio.children[1].style.display = "flex";
             cartasMeio.children[0].style.display = "none";
             setTimeout(() =>{
@@ -111,7 +111,7 @@ function jogo(){
                     atributoEscolhido.addEventListener('click', () => {
                         valoresJogadores[1] = Number(atributoEscolhido.innerText.match(/\d+/g));
                         escolhaJogadores[1] = i;
-                        sumario.value= `Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em finalizar\n${atributoEscolhido.innerText}`
+                        sumario.value= `Jogador 2\nEscolha a ação do seu Pokemon\nDepois clique em próxima rodada\n${atributoEscolhido.innerText}`
                         botaoProximaRodada.disabled = false;
                    });
                 }
@@ -127,7 +127,7 @@ function jogo(){
             botaoProximaRodada.disabled = true;
             cartasMeio.children[1].style.display = "flex";
             cartasMeio.children[0].style.display = "flex";
-            EscreverTextoAosPoucos(sumario, `O resultado foi ` + batalha() + `\nClique em Finalizar para a próxima rodada`,20);
+            EscreverTextoAosPoucos(sumario, `O resultado foi ` + batalha() + `\nClique em próxima rodada para a próxima rodada`,20);
             setTimeout(() =>{
                 botaoProximaRodada.disabled = false;
             }, 3000)
@@ -468,8 +468,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Erro ao fazer a requisição:', error);
     });
     for(i=4;i < carta.length;i++){
-        // fetchPokemonParaCarta(PegarNumeroAleatorio(1, 1025), carta[i]); 
-         fetchPokemonParaCarta(1, carta[i]);
+        fetchPokemonParaCarta(PegarNumeroAleatorio(1, 1025), carta[i]); 
+        //  fetchPokemonParaCarta(1, carta[i]);
     }
     jogo()
 });

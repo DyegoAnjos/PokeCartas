@@ -83,7 +83,7 @@ function ValidarRegex(){
         return false;
     }
     
-    regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$");
     if (regex.test(campoSenha[0].value.trim()) === false){
         popup_alert("Senha inválida")
         return false;
