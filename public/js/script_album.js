@@ -5,67 +5,71 @@ const botaoPesquisarPokemon = document.querySelector("#BotaoPesquisar");
 const botaoLimparPesquisa = document.querySelector("#BotaoLimparPesquisa");
 const InputPesquisaPokemon = document.querySelector("#InputPesquisaPokemon");
 
+/* Funções de Ordenação */
+
+
+/* Funções de pesquisa */
+InputPesquisaPokemon.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        botaoPesquisarPokemon.click();
+    }
+});
 
 botaoPesquisarPokemon.addEventListener('click', function() {
-    var regex = /[._%+@:]/g;
-    InputPesquisaPokemon.value = InputPesquisaPokemon.value.replace(regex, "");
     InputPesquisaPokemon.value = InputPesquisaPokemon.value.replace(" ","-");
     var dadosParaEnviar = {
         idPokemon: InputPesquisaPokemon.value.toLowerCase()
-    }
-    
-    var regex2 = new RegExp("^[0-9]$");
-    
-        fetchPokemon(InputPesquisaPokemon.value).then(pokemon => {
-            if (pokemon != null) {
-                console.log(pokemon.id);
-                dadosParaEnviar.idPokemon = pokemon.id;
-                console.log(dadosParaEnviar);
+    }    
 
-                fetch('../../app/PesquisaPokemon.php' , {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams(dadosParaEnviar).toString(),
-                })
+    fetchPokemon(InputPesquisaPokemon.value).then(pokemon => {
+        if (pokemon != null) {
+            dadosParaEnviar.idPokemon = pokemon.id;
+            fetch('../../app/PesquisaPokemon.php' , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(dadosParaEnviar).toString(),
+            })
                 
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Erro na requisição');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    var totalCartasContador = 0;
-                    if (!Array.isArray(data)) {
-                        console.error('A resposta não é um array:', data);
-                        return;
-                    }
-                    if(data.length === 0) {
-                        caixaPokemonAlbum.innerHTML = "";
-                        popup_alert("Pokemon não encontrado");
-                        CarregarTodosPokemon();
-                    }
-                    else{
-                        caixaPokemonAlbum.innerHTML = "";
-                        data.forEach(carta => {
-                            totalCartasContador++;
-                            caixaPokemonAlbum.appendChild(criarCarta(carta.id_carta));
-                        });
-                        totalCartas.value = totalCartasContador;
-                    }
-                    
-                })
-                .catch(error => {
-                    console.error('Erro ao fazer a requisição:', error);
-                });
-            }
-            else {
-                    popup_alert("Pokemon não encontrado");
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
                 }
+                return response.json();
+            })
+            .then(data => {
+                var totalCartasContador = 0;
+                if (!Array.isArray(data)) {
+                    console.error('A resposta não é um array:', data);
+                    return;
+                }
+                if(data.length === 0) {
+                    caixaPokemonAlbum.innerHTML = "";
+                    popup_alert("Pokemon não encontrado");
+                    CarregarTodosPokemon();
+                }
+                else{
+                    caixaPokemonAlbum.innerHTML = "";
+                    data.forEach(carta => {
+                        totalCartasContador++;
+                        caixaPokemonAlbum.appendChild(criarCarta(carta.id_carta));
+                    });
+                    totalCartas.value = totalCartasContador;
+                }
+                    
+            })
+            .catch(error => {
+                console.error('Erro ao fazer a requisição:', error);
+            });
             }
-        );
+        else{
+                caixaPokemonAlbum.innerHTML = "";
+                popup_alert("Pokemon não encontrado");
+                CarregarTodosPokemon();
+            }
+        }
+    );
         
 
     
@@ -102,6 +106,7 @@ function CarregarTodosPokemon(){
     });
 }
 
+/* funções estruturais */
 
 document.addEventListener('DOMContentLoaded', function() {
     CarregarTodosPokemon();

@@ -33,7 +33,7 @@ function criarCarta(codPokemon) {
     cartaCriada.classList.add('carta');
     cartaCriada.innerHTML = `
         <div class="cartaDivCabecalho">
-            <h3 class="cartaIdPokemon">${codPokemon}</h3>
+            <h3 class="cartaIdPokemon"></h3>
             <div class="caixaVidaPokemon">
                 <h3 class="ValoVidaPokemon">???</h3>
                 <h3 class="textoVidaPokemon">HP</h3>
@@ -75,8 +75,9 @@ function inserirInfosPokemon(pokemon, carta) {
         cartaCaixaVidaPokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
         cartaNomePokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
         cartaIdPokemon.style.backgroundColor = tiposPokemon.get(pokemon.types[1].type.name)?.cor;
-    } catch (error) {
-
+    }
+    catch (error) {
+        console.error(error);
     }
 
     cartaIdPokemon.innerText = pokemon.id;

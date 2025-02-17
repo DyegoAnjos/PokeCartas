@@ -469,7 +469,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     for(i=4;i < carta.length;i++){
         fetchPokemonParaCarta(PegarNumeroAleatorio(1, 1025), carta[i]); 
-        //  fetchPokemonParaCarta(1, carta[i]);
     }
     jogo()
 });

@@ -28,7 +28,7 @@ formularioLogin.addEventListener("submit", (e) => {
         fetch('../../app/LogarUsuario.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',  // Corrigido
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(dadosParaEnviar).toString(),
         })
@@ -48,7 +48,7 @@ formularioLogin.addEventListener("submit", (e) => {
                 window.location.href = '../../resources/views/Menu.html'
             }
             else {
-                popup_alert("Usuário ou senha não encontrados");
+                popup_alert("Usuário não encontrado ou senha incorreta");
             }
         })
         .catch((error) => {
@@ -65,7 +65,7 @@ function ValidarRegex(){
         return false;
     }
 
-    regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$");
     if (regex.test(campoSenha.value.trim()) === false){
         popup_alert("Senha inválida")
         return false;

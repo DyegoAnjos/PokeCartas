@@ -11,7 +11,7 @@
     $stmt->execute();
     $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $SQLComando = "SELECT ac.id_carta FROM album a, album_carta ac WHERE  a.id_album = ac.id_album AND a.id_album = :id_album";
+    $SQLComando = "SELECT ac.id_carta FROM album a, album_carta ac WHERE  a.id_album = ac.id_album AND a.id_album = :id_album ORDER BY ac.id_carta";
     $stmt = $pdo->prepare($SQLComando);
     $stmt->bindParam(":id_album", $resultados['id_album'], PDO::PARAM_INT);
     $stmt->execute();
