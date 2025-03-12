@@ -104,7 +104,6 @@ audio{
     cursor: pointer;
 }
 
-
 #CaixaPesquisar input{
     background-color: #9CEAEF;
     box-shadow: 0px 0px 13px 3px #1d6166;
@@ -142,6 +141,75 @@ main{
     flex-wrap: wrap;
     
     gap: 1rem;
+}
+
+#CaixaFiltrarOrdenar{
+    position: absolute;
+    background-color: #9CEAEF;
+    box-shadow: 5px 6px 18px 8px #1d6166;
+    width: 65%;
+    height: max-content;
+    z-index: 1;
+    padding: 1rem;
+    border-radius: 1rem;
+    align-self: start;
+    margin-top: 13%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .fa-x{
+        position: absolute;
+        font-size: 1.5rem;
+        align-self: flex-end;
+        margin-top: -7.5rem;
+    }
+
+    h3{
+        align-self: start;
+    }
+}
+
+#inputOrdenacaoOpcoes{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+   
+    height: max-content;
+}
+
+.caixaOpcaoOrdenacao{
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: .5rem;
+    gap: 1rem;
+    border: #1d6166 .3rem solid;
+    border-radius: 1rem;
+}
+
+.caixaOpcaoOrdenacao:hover{
+    background-color: #1d6166;
+    color: #9CEAEF;
+    transition: .2s;
+}
+
+#inputFiltroOpcoes{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+
+    height: max-content;
 }
 
 @media (max-width: 1000px){
