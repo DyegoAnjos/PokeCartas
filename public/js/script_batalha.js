@@ -430,7 +430,7 @@ async function TocarSomPokemon(pokemonId) {
         const data = await response.json();
         const cryUrl = data.cries.latest;
 
-        TocarSom(cryUrl,1);
+        TocarSom(cryUrl,.2);
     } catch (error) {
         console.error("Erro ao tentar reproduzir o som:", error);
     }
