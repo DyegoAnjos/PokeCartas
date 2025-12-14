@@ -1,0 +1,159 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "header header"
+    "main main"
+    "footer footer"
+    ;
+
+    justify-items: stretch;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    grid-area: main;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "imagem formulario";
+    justify-items: center;
+    align-items: center;
+}
+
+.fotoDestaque{
+    grid-area: imagem;
+    width: 50%;
+}
+
+form{
+    grid-area: formulario;
+
+    background-color: var(--cor-relevos);
+    box-shadow: inset 0px 0px 20px 7px rgba(0, 0, 0, 0.445);
+
+    width: 60%;
+    max-width: 25rem;
+    min-width: 30rem;
+
+    height: 80%;
+    min-height: 15rem;
+    max-height: 40rem;
+
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+form h1{
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+
+label{
+    width: 90%;
+    height: 15%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+label input{
+    background-color: none;
+
+    width: 100%;
+    
+    border: solid 5px var(--cor-destaque);
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+
+.campo{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.campo button{
+    font-size: 1.5rem;
+
+    background: none;
+    border: solid 5px var(--cor-destaque);
+
+    height: 40px;
+    width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    border-radius: 5px;
+    color: var(--cor-destaque);
+
+    cursor: pointer;
+}
+
+.campo button:hover{
+    background-color: var(--cor-destaque);
+
+    i{
+        color: var(--cor-relevos);
+    }
+    
+}
+
+form button[type="submit"]{
+
+    background-color: var(--cor-titulo);
+
+    height: 2rem;
+    min-height: 1.5rem;
+    max-height: 3rem;    
+
+    width: 30%;
+    max-width: 12rem;
+    min-width: 5rem;
+
+
+    font-size: 1rem;
+    text-align: center;
+    color: var(--cor-relevos);
+    border: none;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover{
+    background-color: var(--cor-destaque);
+    transition: .3s;
+}
+
+
+form a{
+    color: var(--cor-destaque);
+    text-decoration: underline;
+
+    font-size: 1rem;
+}

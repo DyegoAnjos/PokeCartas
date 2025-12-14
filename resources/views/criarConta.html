@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../public/imgs/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/style_index.css">
+    <title>Jô-Quem-Mon</title>
+</head>
+<body>
+    <header>
+        <img src="../../public/imgs/logoHorizontal.png" alt="Logo JoQueMon" id="imagemLogo">
+
+        <nav>
+            <button type="button" id="botaoTrocarTema">
+                <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/338.png" alt="Icone trocar tema" id="iconeBotaoTrocarTema">
+                Claro
+            </button>
+            <button type="button" id="botaoMutarMusica">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+        </nav>
+        
+    </header>
+    <main>
+        <img src="https://th.bing.com/th/id/R.d788fe63a92b9f3c3b621e26205531fb?rik=R6zKpqPKdw8YOQ&pid=ImgRaw&r=0" alt="Ash imagem" class="fotoDestaque">
+        <form action="menu.html" method="post">
+            <h1>Cadastre-se</h1>
+            <label for="nome">
+                <p>Nome de Usuário</p>
+                <input type="text" name="nome" id="inputNome" placeholder="Mestre Pokémon">
+            </label>
+            <label for="email">
+                <p>E-mail</p>
+                <input type="email" name="email" id="inputEmail" placeholder="mestrepokemon@gmail.com">
+            </label>
+            <label for="senha">
+                <p>Senha</p>
+                <div class="campo">
+                    <input type="password" name="senha" id="inputSenha" placeholder="Mestrepokemon@123">
+                    <button type="button" class="botaoTrocarOlho"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </label>
+            <label for="confirmarSenha">
+                <p>Confirmar Senha</p>
+                <div class="campo">
+                    <input type="password" name="confirmarSenha" id="inputConfirmarSenha" placeholder="Mestrepokemon@123">
+                    <button type="button" class="botaoTrocarOlho"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </label>
+            <label for="dataNascimento">
+                <p>Data de Nascimento</p>
+                <input type="date" name="dataNascimento" id="inputDataNascimento">
+            </label>
+            <button type="submit">Continuar</button>
+            <a href="../../index.html">Logar</a>
+        </form>
+    </main>
+    <footer></footer>
+    <script src="https://kit.fontawesome.com/2d311d7657.js" crossorigin="anonymous"></script>
+</body>
+</html>
