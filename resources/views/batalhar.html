@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../public/imgs/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/style_cartas.css">
+    <link rel="stylesheet" href="../../public/css/style_batalhar.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="containerOponente" style="overflow: visible;">
+        <div id="informacoesInimigo">
+            <div class="dadosPessoa">
+                <img src="" alt="Foto Inimigo" class="fotoPerfil" id="fotoInimigo">
+                <p class="nomePessoa" id="nomeInimigo">Gary</p>
+            </div>
+            <p class="vidaPessoa" id="vidaInimigo">100/100</p>
+        </div>
+        <div id="cartasInimigo">
+            <div class="carta metade-fora-top">
+                <div class="cabecalho">
+                    <p class="numeroPokedex">509</p>
+                    <div class="containerVida">
+                        <p class="vida">4</p>
+                        <p>PV</p>
+                    </div>
+                </div>
+                <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+                <div class="informacoes">
+                    <p class="nome">Chandelure</p>
+                    <div class="containerTipos">
+                        <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                        <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                    </div>
+                    <div class="status">
+                        <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                    </div>
+                </div>
+            </div>
+            <div class="carta metade-fora-top">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                    <button type="button" class="DEF">DEF: 5</button>
+                    <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+            </div>
+            <div class="carta metade-fora-top">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <na id="botoes">
+            <button type="button" id="botaoDesistir">Desistir</button>
+            <img src="../../public/imgs/logo.png" alt="Logo JoQueMon" id="imagemLogo">
+        </na>
+    </div>
+    <!-- <main id="campoBatalha">
+        <div class="carta">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+        </div>
+        <div class="carta">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+        </div>
+        <div id="containerFeedback">
+            <img src="" alt="Foto Professor" class="fotoPerfil" id="fotoProfessor">
+            <p id="balaoConverssa">Que batalha maneira, qual será seu próximo movimento?</p>
+            <button type="button" id="botaoContinuar">Continuar</button>
+        </div>
+    </main> -->
+    <!-- <div id="containerJogador">
+        <div id="cartasJogador">
+            <div class="carta">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+            </div>
+            <div class="carta">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+            </div>
+            <div class="carta">
+            <div class="cabecalho">
+                <p class="numeroPokedex">509</p>
+                <div class="containerVida">
+                    <p class="vida">4</p>
+                    <p>PV</p>
+                </div>
+            </div>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/609.png" alt="Chandelure" class="foto">
+            <div class="informacoes">
+                <p class="nome">Chandelure</p>
+                <div class="containerTipos">
+                    <img src="../../public/imgs/Tipos/Ghost_icon_Sleep.png" alt="Fantasma" class="iconeTipo">
+                    <img src="../../public/imgs/Tipos/Fire_icon_Sleep.png" alt="Fogo" class="iconeTipo">
+                </div>
+                <div class="status">
+                    <button type="button" class="ATQ">ATQ: 7</button>
+                        <button type="button" class="DEF">DEF: 5</button>
+                        <button type="button" class="VEL">VEL: 4</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="infomacoesJogador">
+            <div class="dadosPessoa">
+                <p class="nomePessoa" id="nomeJogador">Ashe</p>
+                <img src="" alt="Foto Jogador" class="fotoPerfil" id="fotoJogador">
+            </div>
+            <p class="vidaPessoa" id="vidaJogador">100/100</p>
+        </div>
+    </div> -->
+</body>
+</html>

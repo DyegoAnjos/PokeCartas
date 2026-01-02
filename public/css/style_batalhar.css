@@ -1,0 +1,56 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-areas: 
+        "containerOponente"
+        "campoBatalha"
+        "containerJogador";
+}
+
+#containerOponente,#containerJogador{
+    border: 2px solid black;
+    width: 100%;
+    height: 180px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: end;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+#cartasInimigo{
+    display: flex;
+    gap: 1rem;
+}
+
+#cartasInimigo {
+
+    overflow: visible;
+    
+}
+
+#cartasInimigo .carta {
+    rotate: 90deg;
+}
+
+#containerOponente{
+    grid-area: containerOponente;
+}
+
+#containerJogador{
+    grid-area: containerJogador;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#campoBatalha{
+    grid-area: campoBatalha;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

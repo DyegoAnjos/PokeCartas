@@ -1,0 +1,165 @@
+*{
+    --cor-tipo1: #734876;
+    --cor-tipo2: #FF662E;
+    --deslocamento-carta: 40%; /* controle global do quanto a carta fica para fora (fallback) */
+    --deslocamento-top: 25%; /* menos para dentro da tela */
+    --deslocamento-bottom: 40%;
+}
+
+.carta{
+    background-color: var(--cor-tipo1);
+    border: solid 8px var(--cor-tipo2);
+    border-radius: 16px;
+
+    width: 250px;
+    height: 360px;
+    position: relative; /* permite que filhos absolutos sejam posicionados em relação a este container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.25) inset;
+}
+
+.carta .cabecalho{
+    position: absolute; /* retira do fluxo e permite sobreposição */
+    top: 0px; /* ajuste para controlar quanto fica sobreposto */
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 3;
+}
+
+.numeroPokedex{
+    background-color: var(--cor-tipo2);
+    width: 30%;
+    text-align: center;
+    border-radius: 0px 4px 4px 0;
+}
+
+.containerVida{
+    background-color: var(--cor-tipo2);
+    width: 20%;
+    height: 3rem;
+    text-align: center;
+    border-radius: 0px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vida{
+    text-decoration: underline;
+}
+
+.carta .foto{
+    width: 150px;
+}
+
+.informacoes{
+    width: 100%;
+    height: 250px;
+
+    position: relative;
+    overflow: hidden; /* usa o container como máscara de recorte */
+
+    /* background direto removido — a imagem será exibida por ::before */
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: inset 0px 0px 18px 4px rgba(0, 0, 0, 0.25);
+}
+
+.informacoes::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) scale(.5);
+    background-image: url(../imgs/Padroes/PadraoFogoFantasma.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat;
+    opacity: 0.1; /* ajuste a opacidade aqui */
+    z-index: 0;
+    pointer-events: none;
+}
+
+.informacoes::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.informacoes > *{
+    position: relative;
+    z-index: 2;
+}
+
+.nome{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.carta .containerTipos{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+
+    img{
+        width: 32px;
+    }
+}
+
+/* Utilitários para posicionar a carta metade para fora do seu container.
+   Use adicionando a classe `metade-fora-top` ou `metade-fora-bottom` ao elemento `.carta`.
+   Certifique-se que o container pai tenha `overflow: visible` para permitir a visualização do transbordamento. */
+.carta.metade-fora-top{
+    transform-origin: center center;
+    transform: translateY(calc(-1 * var(--deslocamento-top))) rotate(90deg);
+}
+
+.carta.metade-fora-bottom{
+    transform-origin: center center;
+    transform: translateY(var(--deslocamento-bottom));
+}
+
+.status{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.status button{
+    background: none;
+    border: none;
+    width: 50%;
+    text-align: left;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status button:hover{
+    box-shadow: 0 0 20px var(--cor-tipo2) inset;
+}
